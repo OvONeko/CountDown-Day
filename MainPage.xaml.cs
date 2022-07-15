@@ -22,15 +22,30 @@ namespace CountDown_Day
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        List<Button> buttons = new List<Button>();
         public MainPage()
         {
             this.InitializeComponent();
         }
         private void Grid_Num_Loaded(object sender, RoutedEventArgs e)
         {
-            DateTime dt = DateTime.Now;
-            DateTime targettest = new DateTime(dt.Year + 1, 3, 31);
-            
+
+        }
+        private void BAdd_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void BSetting_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void IFrame_Navigating(object sender, NavigatingCancelEventArgs e)
+        {
+
+        }
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

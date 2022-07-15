@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Loaded="Page_Loaded">
     <Page.Resources>
         
     </Page.Resources>
@@ -35,8 +36,16 @@
         </Grid>
         <Grid x:Name="lgrid" Grid.Column="0">
             <Grid Margin="0,0" Background="#EEEEEE" Width="48" HorizontalAlignment="Left">
-                
+                <Button x:Name="BAdd" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" Click="BAdd_Click">
+                    <Image Source="/Assets/button-add.png" Margin="0,0,0,0" Stretch="Uniform"/>
+                </Button>
+                <Button x:Name="BSetting" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,48" Click="BSetting_Click">
+                    <Image Source="/Assets/button-settings.png" Margin="0,0,0,0" Stretch="Uniform"/>
+                </Button>
             </Grid>
+            <Frame x:Name="IFrame" Margin="48,0,0,0" Navigating="IFrame_Navigating">
+                
+            </Frame>
         </Grid>
     </Grid>
 </Page>
