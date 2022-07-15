@@ -4,17 +4,21 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:CountDown_Day"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        
+    </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="1">
-            <Image x:Name="IBg" Source="/Assets/normal-bg.png" Stretch="UniformToFill"/>
-            <Grid Margin="0,0,0,0" Height="300" Width="400" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid x:Name="rgrid" Grid.Column="1">
+            <Image x:Name="IBg" Source="/Assets/normal-bg.jpg" Stretch="UniformToFill"/>
+            <Grid Margin="0,0,0,0" Height="300" Width="400" VerticalAlignment="Center" HorizontalAlignment="Center" Loaded="Grid_Num_Loaded">
                 <Border x:Name="BFore" Margin="0,0,0,0" Height="300" Width="400" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="30">
                     <Border.Background>
                         <ImageBrush>
@@ -23,19 +27,15 @@
                             </ImageBrush.ImageSource>
                         </ImageBrush>
                     </Border.Background>
-                    <controls:DropShadowPanel Color="Black"
-                          OffsetX="-50"
-                          OffsetY="-50"
-                          BlurRadius="50"
-                          ShadowOpacity="1"
-                          Width="400"
-                          Height="300"
-                          HorizontalContentAlignment="Stretch"
-                          VerticalContentAlignment="Stretch">
-                        <Ellipse />
-                    </controls:DropShadowPanel>
-
+                    <Grid>
+                        <TextBlock x:Name="TTime" Text="" FontSize="184" Margin="0,0,0,0" Foreground="AliceBlue" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    </Grid>
                 </Border>
+            </Grid>
+        </Grid>
+        <Grid x:Name="lgrid" Grid.Column="0">
+            <Grid Margin="0,0" Background="#EEEEEE" Width="48" HorizontalAlignment="Left">
+                
             </Grid>
         </Grid>
     </Grid>

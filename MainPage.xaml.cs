@@ -26,5 +26,11 @@ namespace CountDown_Day
         {
             this.InitializeComponent();
         }
+        private void Grid_Num_Loaded(object sender, RoutedEventArgs e)
+        {
+            DateTime dt = DateTime.Now;
+            DateTime targettest = new DateTime(dt.Year + 1, 3, 31);
+            
+        }
     }
 }
