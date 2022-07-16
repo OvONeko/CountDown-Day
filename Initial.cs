@@ -5,6 +5,8 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -15,6 +17,12 @@ using Windows.UI.Xaml.Navigation;
 
 namespace CountDown_Day
 {
+    public class drop_down_list
+    {
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public int IDS { get; set; }
+    }
     public sealed partial class MainPage : Page
     {
         enum ForeDate
@@ -34,6 +42,23 @@ namespace CountDown_Day
                 return ForeDate.Past;
             else
                 throw new Exception();
+        }
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!File.Exists(localfolder.Path + "\\config.ini"))
+            {
+                try
+                {
+                    localfolder.CreateFileAsync("config.ini", CreationCollisionOption.FailIfExists);
+                }
+                catch
+                {
+                    var dialog = new MessageDialog("Cannot Create File:" + localfolder.Path + "\\config.ini");
+                    dialog.Options = MessageDialogOptions.AcceptUserInputAfterDelay;
+                    dialog.ShowAsync();
+                }
+            }
+
         }
     }
 }

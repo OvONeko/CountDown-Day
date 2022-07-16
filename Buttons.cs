@@ -15,27 +15,24 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
-
 namespace CountDown_Day
 {
-    /// <summary>
-    /// 可用于自身或导航至 Frame 内部的空白页。
-    /// </summary>
     public sealed partial class MainPage : Page
     {
-        List<Button> buttons = new List<Button>();
-        StorageFolder localfolder;
-        public MainPage()
+        private void BAdd_Click(object sender, RoutedEventArgs e)
         {
-            this.InitializeComponent();
-            localfolder = ApplicationData.Current.LocalFolder;
+            AddCountDay addCountDay = new AddCountDay();
+            addCountDay.ShowAsync();
         }
-        private void Grid_Num_Loaded(object sender, RoutedEventArgs e)
+        private void BSetting_Click(object sender, RoutedEventArgs e)
         {
 
         }
-        private void IFrame_Navigating(object sender, NavigatingCancelEventArgs e)
+        private void BDown_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void BUp_Click(object sender, RoutedEventArgs e)
         {
 
         }

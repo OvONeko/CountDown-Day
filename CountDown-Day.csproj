@@ -116,9 +116,13 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AddCountDay.xaml.cs">
+      <DependentUpon>AddCountDay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Buttons.cs" />
     <Compile Include="Initial.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -132,7 +136,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\button-add.png" />
+    <Content Include="Assets\button-down.png" />
     <Content Include="Assets\button-settings.png" />
+    <Content Include="Assets\button-up.png" />
     <Content Include="Assets\normal-bg.jpg" />
     <Content Include="Assets\normal-bg.png" />
     <Content Include="Assets\Transfer.png" />
@@ -150,6 +156,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AddCountDay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
