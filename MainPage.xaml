@@ -56,9 +56,9 @@
                     <TextBlock Text="0/0" FontSize="28" Margin="48,0,48,0" HorizontalTextAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas"/>
                 </Grid>
             </Grid>
-            <Frame x:Name="IFrame" Margin="48,0,0,0" Navigating="IFrame_Navigating">
-                
-            </Frame>
+            <Grid x:Name="IFrame" Margin="48,0,0,0" DataContext="{Binding}">
+                <Image x:Name="IEmpty" Source="/Assets/calendar-empty.png" Width="400" Height="400" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Fill" Visibility="Collapsed"/>
+            </Grid>
         </Grid>
     </Grid>
 </Page>

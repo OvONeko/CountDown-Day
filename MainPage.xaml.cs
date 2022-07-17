@@ -34,9 +34,5 @@ namespace CountDown_Day
         {
 
         }
-        private void IFrame_Navigating(object sender, NavigatingCancelEventArgs e)
-        {
-
-        }
     }
 }

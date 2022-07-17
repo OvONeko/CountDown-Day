@@ -32,8 +32,8 @@ namespace CountDown_Day
     }
     public class button_map
     {
-        int ID { get; set; }
-        Button button { get; set; }
+        public int ID { get; set; }
+        public Button button { get; set; }
     }
     public sealed partial class MainPage : Page
     {
@@ -60,6 +60,7 @@ namespace CountDown_Day
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            UIElement uIElement = this.IFrame;
             if (!File.Exists(localfolder.Path + "\\config.ini"))
             {
                 try
@@ -72,12 +73,13 @@ namespace CountDown_Day
                     dialog.Options = MessageDialogOptions.AcceptUserInputAfterDelay;
                     dialog.ShowAsync();
                 }
+                this.IEmpty.Visibility = Visibility.Visible;
             }
             else
             {
                 if (FileExtend.IsEmpty(localfolder.Path + "\\config.ini"))
                 {
-
+                    this.IEmpty.Visibility = Visibility.Visible;
                 }
                 else
                 {
@@ -86,10 +88,22 @@ namespace CountDown_Day
                     foreach (var v in schedule)
                     {
                         string[] args = v.Split(new char[] { ' ', ':' });
-                        DateTime targetdt = new DateTime(Convert.ToInt32(args[0]), Convert.ToInt32(args[1]), Convert.ToInt32(args[2]));
+                        DateTime targetdt = new DateTime(Convert.ToInt32(args[0]) == 0 ? DateTime.Now.Year : Convert.ToInt32(args[0]), Convert.ToInt32(args[1]), Convert.ToInt32(args[2]));
                         schedules.Add(new countdown_schedule { ID = i, isshow = false, Name = args[3], time = targetdt });
-                        
+                        double h = Window.Current.Bounds.Height - 48.0;
+                        if (((i + 1) * 48 + 8) < h)
+                        {
+                            buttonmaps.Add(new button_map { ID = i, button = new Button() });
+                            buttonmaps[i].button.Height = 32;
+                            buttonmaps[i].button.Margin = new Thickness(8, i * 40 + 8, 8, 0);
+                            buttonmaps[i].button.Content = targetdt.ToShortDateString() + "\t" + args[3];
+                            buttonmaps[i].button.Visibility = Visibility.Visible;
+                            buttonmaps[i].button.VerticalAlignment = VerticalAlignment.Top;
+                            IFrame.Children.Add(buttonmaps[i].button);
+                        }
+                        i++;
                     }
+                    
                 }
             }
         }
