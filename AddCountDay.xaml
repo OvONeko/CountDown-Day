@@ -19,7 +19,7 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <ComboBox x:Name="CYear" Width="87.5" Margin="0,0,0,0" VerticalContentAlignment="Center" HorizontalAlignment="Left" DataContext="{Binding}" ItemsSource="{Binding}" Grid.Row="0"></ComboBox>
-        <ComboBox x:Name="CMonth" Width="75" Margin="100,0,0,0" VerticalContentAlignment="Center" HorizontalAlignment="Left" DataContext="{Binding}" ItemsSource="{Binding}" Grid.Row="0"></ComboBox>
+        <ComboBox x:Name="CMonth" Width="75" Margin="100,0,0,0" VerticalContentAlignment="Center" HorizontalAlignment="Left" DataContext="{Binding}" ItemsSource="{Binding}" Grid.Row="0" SelectionChanged="CMonth_SelectionChanged"></ComboBox>
         <ComboBox x:Name="CDay" Width="75" Margin="187.5,0,0,0" VerticalContentAlignment="Center" HorizontalAlignment="Left" DataContext="{Binding}" ItemsSource="{Binding}" Grid.Row="0"></ComboBox>
         <TextBox x:Name="TTitle" Grid.Row="1" Margin="0,7.5,7.5,0" Text="" PlaceholderText="主題"/>
     </Grid>

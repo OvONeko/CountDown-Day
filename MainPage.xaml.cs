@@ -24,7 +24,6 @@ namespace CountDown_Day
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        List<Button> buttons = new List<Button>();
         StorageFolder localfolder;
         public MainPage()
         {

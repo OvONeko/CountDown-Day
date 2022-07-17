@@ -124,6 +124,7 @@
     </Compile>
     <Compile Include="Buttons.cs" />
     <Compile Include="Initial.cs" />
+    <Compile Include="IOExtend.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

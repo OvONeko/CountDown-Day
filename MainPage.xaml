@@ -41,7 +41,7 @@
                 <Button x:Name="BAdd" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" Click="BAdd_Click">
                     <Image Source="/Assets/button-add.png" Margin="0,0,0,0" Stretch="Uniform"/>
                 </Button>
-                <Button x:Name="BSetting" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,48" Click="BSetting_Click">
+                <Button x:Name="BSetting" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0" Click="BSetting_Click">
                     <Image Source="/Assets/button-settings.png" Margin="0,0,0,0" Stretch="Uniform"/>
                 </Button>
             </Grid>
