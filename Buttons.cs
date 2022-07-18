@@ -65,5 +65,25 @@ namespace CountDown_Day
                 this.TTime.Text = Convert.ToString(d);
             }
         }
+        private void Change_Schedule(object sender, RoutedEventArgs e)
+        {
+            string til = (string)(((Button)sender).Content);
+            int id = -1;
+            foreach (var v in buttonmaps)
+            {
+                if (((string)(v.button.Content)) == til)
+                {
+                    id = v.ID;
+                    break;
+                }
+            }
+            if (id == -1)
+                throw new Exception("Failed to query metadata");
+            else
+            {
+                ChangeSchedule cgs = new ChangeSchedule();
+                cgs.ShowAsyncN(id);
+            }
+        }
     }
 }

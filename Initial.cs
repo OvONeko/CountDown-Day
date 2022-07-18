@@ -37,16 +37,16 @@ namespace CountDown_Day
     }
     public sealed partial class MainPage : Page
     {
-        List<countdown_schedule> schedules = new List<countdown_schedule>();
-        List<button_map> buttonmaps = new List<button_map>();
+        public static List<countdown_schedule> schedules = new List<countdown_schedule>();
+        private static List<button_map> buttonmaps = new List<button_map>();
         int nowid = 0;
-        enum ForeDate
+        public enum ForeDate
         {
             Past = 1,
             Future = -1,
             Now = 0
         }
-        static ForeDate GetForeDate(DateTime dateTime)
+        public static ForeDate GetForeDate(DateTime dateTime)
         {
             int i = DateTime.Now.CompareTo(dateTime);
             if (i == 0)
@@ -100,6 +100,7 @@ namespace CountDown_Day
                             buttonmaps[i].button.Visibility = Visibility.Visible;
                             buttonmaps[i].button.VerticalAlignment = VerticalAlignment.Top;
                             buttonmaps[i].button.Click += Upd_Schedule;
+                            buttonmaps[i].button.RightTapped += Change_Schedule;
                             IFrame.Children.Add(buttonmaps[i].button);
                         }
                         i++;
@@ -108,9 +109,28 @@ namespace CountDown_Day
                 }
             }
         }
-        public async void ReLoadItems(int status = 0)
+        public async void ReLoadItems()
         {
-            
+            buttonmaps.Clear();
+            this.IFrame.Children.Clear();
+            int i = 0;
+            foreach (var v in schedules)
+            {
+                double h = Window.Current.Bounds.Height - 48.0;
+                if (((i + 1) * 48 + 8) < h)
+                {
+                    buttonmaps.Add(new button_map { ID = i, button = new Button() });
+                    buttonmaps[i].button.Height = 32;
+                    buttonmaps[i].button.Margin = new Thickness(8, i * 40 + 8, 8, 0);
+                    buttonmaps[i].button.Content = v.time.ToShortDateString() + "\t" + v.Name;
+                    buttonmaps[i].button.Visibility = Visibility.Visible;
+                    buttonmaps[i].button.VerticalAlignment = VerticalAlignment.Top;
+                    buttonmaps[i].button.Click += Upd_Schedule;
+                    buttonmaps[i].button.RightTapped += Change_Schedule;
+                    IFrame.Children.Add(buttonmaps[i].button);
+                }
+                i++;
+            }
         }
     }
 }
