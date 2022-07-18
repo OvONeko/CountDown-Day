@@ -88,7 +88,7 @@ namespace CountDown_Day
                     foreach (var v in schedule)
                     {
                         string[] args = v.Split(new char[] { ' ', ':' });
-                        DateTime targetdt = new DateTime(Convert.ToInt32(args[0]) == 0 ? DateTime.Now.Year : Convert.ToInt32(args[0]), Convert.ToInt32(args[1]), Convert.ToInt32(args[2]));
+                        DateTime targetdt = new DateTime(Convert.ToInt32(args[0]) == 0 ? (GetForeDate(new DateTime(DateTime.Now.Year, Convert.ToInt32(args[1]), Convert.ToInt32(args[2]))) == ForeDate.Future ? DateTime.Now.Year : DateTime.Now.Year + 1) : Convert.ToInt32(args[0]), Convert.ToInt32(args[1]), Convert.ToInt32(args[2]));
                         schedules.Add(new countdown_schedule { ID = i, isshow = false, Name = args[3], time = targetdt });
                         double h = Window.Current.Bounds.Height - 48.0;
                         if (((i + 1) * 48 + 8) < h)
@@ -99,6 +99,7 @@ namespace CountDown_Day
                             buttonmaps[i].button.Content = targetdt.ToShortDateString() + "\t" + args[3];
                             buttonmaps[i].button.Visibility = Visibility.Visible;
                             buttonmaps[i].button.VerticalAlignment = VerticalAlignment.Top;
+                            buttonmaps[i].button.Click += Upd_Schedule;
                             IFrame.Children.Add(buttonmaps[i].button);
                         }
                         i++;
@@ -107,9 +108,9 @@ namespace CountDown_Day
                 }
             }
         }
-        public static async void ReLoadItems()
+        public async void ReLoadItems(int status = 0)
         {
-
+            
         }
     }
 }

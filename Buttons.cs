@@ -36,5 +36,34 @@ namespace CountDown_Day
         {
 
         }
+        private void Upd_Schedule(object sender, RoutedEventArgs e)
+        {
+            string til = (string)(((Button)sender).Content);
+            int id = -1;
+            foreach (var v in buttonmaps)
+            {
+                if (((string)(v.button.Content)) == til)
+                {
+                    id = v.ID;
+                    break;
+                }
+            }
+            if (id == -1)
+                throw new Exception("Failed to query metadata");
+            else
+            {
+                string title = schedules[id].Name;
+                DateTime tdt = schedules[id].time;
+                string ce;
+                if (GetForeDate(tdt) == ForeDate.Future)
+                    ce = "還有";
+                else
+                    ce = "已經";
+                TimeSpan dif = tdt - DateTime.Now;
+                int d = (int)(dif.TotalDays < 0 ? -dif.TotalDays : dif.TotalDays);
+                this.TAction.Text = title + ce;
+                this.TTime.Text = Convert.ToString(d);
+            }
+        }
     }
 }
