@@ -46,7 +46,9 @@ namespace CountDown_Day
                     File.AppendAllText(localfolder.Path + "\\config.ini", ori[i] + "\n");
                 }
             }
-            await CoreApplication.RequestRestartAsync("");//No QAQ
+            // await CoreApplication.RequestRestartAsync("");//No QAQ
+            // qyl27: MainPage instance got!
+            App.Main?.ReLoadItems();
         }
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {

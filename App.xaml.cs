@@ -22,6 +22,8 @@ namespace CountDown_Day
     /// </summary>
     sealed partial class App : Application
     {
+        public static MainPage Main { get; private set; }
+
         /// <summary>
         /// 初始化单一实例应用程序对象。这是执行的创作代码的第一行，
         /// 已执行，逻辑上等同于 main() 或 WinMain()。
@@ -40,6 +42,11 @@ namespace CountDown_Day
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
+
+            if (rootFrame.Content is MainPage)
+            {
+                Main = rootFrame.Content as MainPage;
+            }
 
             // 不要在窗口已包含内容时重复应用程序初始化，
             // 只需确保窗口处于活动状态
