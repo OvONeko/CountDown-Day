@@ -5,7 +5,6 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,25 +26,6 @@ namespace CountDown_Day
         }
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            List<countdown_schedule> schedules = MainPage.schedules;
-            StorageFolder localfolder = ApplicationData.Current.LocalFolder;
-            MainPage.schedules.Clear();
-            string[] ori = File.ReadAllLines(localfolder.Path + "\\config.ini");
-            File.Delete(localfolder.Path + "\\config.ini");
-            int i = 0;
-            foreach (var v in schedules)
-            {
-                if (v.ID == argid)
-                {
-                    MainPage.schedules.Remove(v);
-                }
-                else
-                {
-                    File.AppendAllText(localfolder.Path + "\\config.ini", ori[i] + "\n");
-                }
-                i++;
-            }
-            App.Main?.ReLoadItems();
         }
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {

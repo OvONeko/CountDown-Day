@@ -37,8 +37,7 @@ namespace CountDown_Day
                 MessageDialog dialog = new MessageDialog(ex.ToString(), ex.Message);
                 dialog.ShowAsync();
             }
-            MainPage.schedules.Add(new countdown_schedule { ID = MainPage.schedules.Count, Name = (this.TTitle.Text == "" ? "(未命名)" : this.TTitle.Text), time = new DateTime((int)this.CYear.SelectedValue == 0 ? (MainPage.GetForeDate(new DateTime(DateTime.Now.Year, (int)this.CMonth.SelectedValue, (int)this.CDay.SelectedValue)) == MainPage.ForeDate.Future ? DateTime.Now.Year : DateTime.Now.Year + 1) : (int)this.CYear.SelectedValue, (int)this.CMonth.SelectedValue, (int)this.CDay.SelectedValue) });
-            App.Main?.ReLoadItems();
+            
         }
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
