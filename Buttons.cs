@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -26,7 +27,7 @@ namespace CountDown_Day
         }
         private void BSetting_Click(object sender, RoutedEventArgs e)
         {
-
+            Launcher.LaunchFolderAsync(localfolder);
         }
         private void BDown_Click(object sender, RoutedEventArgs e)
         {
@@ -36,7 +37,7 @@ namespace CountDown_Day
         {
 
         }
-        private void Upd_Schedule(object sender, RoutedEventArgs e)
+        public void Upd_Schedule(object sender, RoutedEventArgs e)
         {
             string til = (string)(((Button)sender).Content);
             int id = -1;
@@ -65,7 +66,7 @@ namespace CountDown_Day
                 this.TTime.Text = Convert.ToString(d);
             }
         }
-        private void Change_Schedule(object sender, RoutedEventArgs e)
+        public void Change_Schedule(object sender, RoutedEventArgs e)
         {
             string til = (string)(((Button)sender).Content);
             int id = -1;

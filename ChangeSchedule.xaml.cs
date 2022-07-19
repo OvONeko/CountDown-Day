@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -42,10 +43,10 @@ namespace CountDown_Day
                 }
                 else
                 {
-                    File.AppendAllText(localfolder.Path + "\\config.ini", ori[i]);
+                    File.AppendAllText(localfolder.Path + "\\config.ini", ori[i] + "\n");
                 }
             }
-            //await Task.Run(MainPage.ReLoadItems);//Why does it cannot be used??QAQ
+            await CoreApplication.RequestRestartAsync("");//No QAQ
         }
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {

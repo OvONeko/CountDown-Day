@@ -38,7 +38,7 @@ namespace CountDown_Day
     public sealed partial class MainPage : Page
     {
         public static List<countdown_schedule> schedules = new List<countdown_schedule>();
-        private static List<button_map> buttonmaps = new List<button_map>();
+        public static List<button_map> buttonmaps = new List<button_map>();
         int nowid = 0;
         public enum ForeDate
         {
@@ -101,7 +101,7 @@ namespace CountDown_Day
                             buttonmaps[i].button.VerticalAlignment = VerticalAlignment.Top;
                             buttonmaps[i].button.Click += Upd_Schedule;
                             buttonmaps[i].button.RightTapped += Change_Schedule;
-                            IFrame.Children.Add(buttonmaps[i].button);
+                            this.IFrame.Children.Add(buttonmaps[i].button);
                         }
                         i++;
                     }
