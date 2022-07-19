@@ -32,7 +32,6 @@ namespace CountDown_Day
         }
         private void Grid_Num_Loaded(object sender, RoutedEventArgs e)
         {
-
         }
     }
 }
