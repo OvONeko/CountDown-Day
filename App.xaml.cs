@@ -43,7 +43,6 @@ namespace CountDown_Day
         {
             Frame rootFrame = Window.Current.Content as Frame;
 
-
             // 不要在窗口已包含内容时重复应用程序初始化，
             // 只需确保窗口处于活动状态
             if (rootFrame == null)
@@ -59,8 +58,9 @@ namespace CountDown_Day
                 }
 
                 // 将框架放在当前窗口中
+                rootFrame.Content = new MainPage();
                 Window.Current.Content = rootFrame;
-                
+                // Main = rootFrame.Content as MainPage;
                 if (rootFrame.Content is MainPage)
                 {
                     Main = rootFrame.Content as MainPage;

@@ -110,11 +110,13 @@ namespace CountDown_Day
             }
         }
 
-        public async void ReLoadItems()
+        public void ReLoadItems()
         {
             buttonmaps.Clear();
             this.IFrame.Children.Clear();
             int i = 0;
+            // MessageDialog dialog = new MessageDialog("ReloadItems Detached.");
+            // dialog.ShowAsync();
             foreach (var v in schedules)
             {
                 double h = Window.Current.Bounds.Height - 48.0;

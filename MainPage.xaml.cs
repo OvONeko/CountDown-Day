@@ -20,7 +20,7 @@ using Windows.UI.Xaml.Navigation;
 namespace CountDown_Day
 {
     /// <summary>
-    /// 可用于自身或导航至 Frame 内部的空白页。
+    /// Can be used on itself or to navigate to a blank page inside the Frame.
     /// </summary>
     public sealed partial class MainPage : Page
     {
