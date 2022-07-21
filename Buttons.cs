@@ -27,7 +27,8 @@ namespace CountDown_Day
         }
         private void BSetting_Click(object sender, RoutedEventArgs e)
         {
-            Launcher.LaunchFolderAsync(localfolder);
+            Settings settings = new Settings();
+            settings.ShowAsync();
         }
         private void BDown_Click(object sender, RoutedEventArgs e)
         {

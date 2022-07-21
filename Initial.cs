@@ -126,6 +126,13 @@ namespace CountDown_Day
             int i = 0;
             // MessageDialog dialog = new MessageDialog("ReloadItems Detached.");
             // dialog.ShowAsync();
+            if (schedules.Count == 0)
+            {
+                this.IEmpty.Visibility = Visibility.Visible;
+                return;
+            }
+            else
+                this.IEmpty.Visibility = Visibility.Collapsed;
             foreach (var v in schedules)
             {
                 double h = Window.Current.Bounds.Height - 48.0;

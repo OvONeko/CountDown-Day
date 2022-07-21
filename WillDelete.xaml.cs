@@ -27,9 +27,12 @@ namespace CountDown_Day
         }
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            List<countdown_schedule> schedules = MainPage.schedules;
+            List<countdown_schedule> schedules = new List<countdown_schedule>();
+            foreach (var v in MainPage.schedules)
+            {
+                schedules.Add(v);
+            }
             StorageFolder localfolder = ApplicationData.Current.LocalFolder;
-            MainPage.schedules.Clear();
             string[] ori = File.ReadAllLines(localfolder.Path + "\\config.ini");
             File.Delete(localfolder.Path + "\\config.ini");
             int i = 0;
@@ -44,6 +47,10 @@ namespace CountDown_Day
                     File.AppendAllText(localfolder.Path + "\\config.ini", ori[i] + "\n");
                 }
                 i++;
+            }
+            for (i = 0; i < MainPage.schedules.Count; i++)
+            {
+                MainPage.schedules[i].ID = i;
             }
             App.Main?.ReLoadItems();
         }

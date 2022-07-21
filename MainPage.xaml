@@ -29,6 +29,7 @@
                         </ImageBrush>
                     </Border.Background>
                     <Grid>
+                        <TextBlock Text="{Binding Text, ElementName=TTime}" FontSize="184" Margin="0,0,0,0" Foreground="#22000000" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                         <TextBlock x:Name="TTime" Text="" FontSize="184" Margin="0,0,0,0" Foreground="AliceBlue" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                         <TextBlock x:Name="TAction" Text="" FontSize="36" Margin="0,0,0,0" Foreground="AliceBlue" VerticalAlignment="Top" HorizontalAlignment="Center"></TextBlock>
                         <TextBlock Text="天" FontSize="36" Margin="0,0,10,10" Foreground="AliceBlue" VerticalAlignment="Bottom" HorizontalAlignment="Right"></TextBlock>
