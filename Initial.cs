@@ -17,12 +17,14 @@ using Windows.UI.Xaml.Navigation;
 
 namespace CountDown_Day
 {
+    //用於ComboBox
     public class drop_down_list
     {
         public string Name { get; set; }
         public int ID { get; set; }
         public int IDS { get; set; }
     }
+    //倒數日記錄, ID用於傳參
     public class countdown_schedule
     {
         public int ID { get; set; }
@@ -30,6 +32,7 @@ namespace CountDown_Day
         public DateTime time { get; set; }
         public bool isshow { get; set; }
     }
+    //按鈕記錄, ID用於傳參
     public class button_map
     {
         public int ID { get; set; }
@@ -46,6 +49,10 @@ namespace CountDown_Day
             Future = -1,
             Now = 0
         }
+        /// <summary>
+        /// 用於獲取指定日期與當天的舌關係
+        /// </summary>
+        /// <param name="dateTime">指定日期</param>
         public static ForeDate GetForeDate(DateTime dateTime)
         {
             int i = DateTime.Now.CompareTo(dateTime);
@@ -63,6 +70,7 @@ namespace CountDown_Day
             UIElement uIElement = this.IFrame;
             if (!File.Exists(localfolder.Path + "\\config.ini"))
             {
+                //嘗試創建文件並顯示「空」選項
                 try
                 {
                     localfolder.CreateFileAsync("config.ini", CreationCollisionOption.FailIfExists);
@@ -109,8 +117,9 @@ namespace CountDown_Day
                 }
             }
         }
-
-        public void ReLoadItems()
+        //用於修改/添加/刪除倒數日後的重載按鈕
+        //用法: App.Main?.ReLoadItems()
+        public void ReLoadItems(int status = 0)
         {
             buttonmaps.Clear();
             this.IFrame.Children.Clear();
