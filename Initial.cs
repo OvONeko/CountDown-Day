@@ -31,6 +31,7 @@ namespace CountDown_Day
         public string Name { get; set; }
         public DateTime time { get; set; }
         public bool isshow { get; set; }
+        public string filename { get; set; }
     }
     //按鈕記錄, ID用於傳參
     public class button_map
@@ -85,7 +86,7 @@ namespace CountDown_Day
             }
             else
             {
-                if (FileExtend.IsEmpty(localfolder.Path + "\\config.ini"))
+                /*if (FileExtend.IsEmpty(localfolder.Path + "\\config.ini"))
                 {
                     this.IEmpty.Visibility = Visibility.Visible;
                 }
@@ -114,7 +115,73 @@ namespace CountDown_Day
                         i++;
                     }
                     
+                }*/
+                DirectoryInfo di = new DirectoryInfo(localfolder.Path);
+                int i6 = 0;
+                foreach (var v in di.GetFiles())
+                {
+                    if (v.Name.Contains("config.ini"))
+                        continue;
+                    string fname = v.FullName;
+                    string[] values;
+                    try
+                    {
+                        values = File.ReadAllLines(fname);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageDialog dialog = new MessageDialog(ex.ToString(), ex.Message);
+                        return;
+                    }
+                    int year = 0, month = 0, day = 0;
+                    string tl = "";
+                    int yst = 0;
+                    bool isst = false;
+                    foreach (var u in values)
+                    {
+                        string[] c = u.Split('=');
+                        for (int i = 0; i < c.Length; i++)
+                        {
+                            c[i] = c[i].Trim();
+                        }
+                        if (c[0] == "Month")
+                        {
+                            month = Convert.ToInt32(c[1]);
+                        }
+                        else if (c[0] == "Day")
+                        {
+                            day = Convert.ToInt32(c[1]);
+                        }
+                        else if (c[0] == "Title")
+                        {
+                            tl = c[1];
+                        }
+                        if (c[0] == "Year")
+                        {
+                            if (((month == 0) || (day == 0)) && (Convert.ToInt32(c[1]) == 0))
+                            {
+                                isst = true;
+                                yst = Convert.ToInt32(c[1]);
+                            }
+                            else if (Convert.ToInt32(c[1]) != 0)
+                            {
+                                year = Convert.ToInt32(c[1]);
+                            }
+                            else
+                            {
+                                year = MainPage.GetForeDate(new DateTime(DateTime.Now.Year, month, day)) == ForeDate.Future ? DateTime.Now.Year : DateTime.Now.Year + 1;
+                            }
+                        }
+                    }
+                    if (isst)
+                    {
+                        year = yst == 0 ? (MainPage.GetForeDate(new DateTime(DateTime.Now.Year, month, day)) == ForeDate.Future ? DateTime.Now.Year : DateTime.Now.Year + 1) : yst;
+                    }
+                    DateTime targetdt = new DateTime(year, month, day);
+                    schedules.Add(new countdown_schedule { ID = i6, isshow = false, Name = tl, time = targetdt, filename = fname });
+                    i6++;
                 }
+                this.ReLoadItems();
             }
         }
         //用於修改/添加/刪除倒數日後的重載按鈕
