@@ -25,19 +25,29 @@ namespace CountDown_Day
         {
             this.InitializeComponent();
         }
-        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        unsafe private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             StorageFolder localfolder = ApplicationData.Current.LocalFolder;
+            DateTime dt = DateTime.Now;
+            string filename = localfolder.Path + "\\" + HE.Hash(dt.ToString() + Convert.ToString(dt.Ticks)) + ".ini";
             try
             {
                 File.AppendAllText(localfolder.Path + "\\config.ini", this.CYear.SelectedValue.ToString() + " " + this.CMonth.SelectedValue.ToString() + " " + this.CDay.SelectedValue.ToString() + ":" + (this.TTitle.Text == "" ? "(未命名)" : this.TTitle.Text) + "\n");
+                string[] thisconfig =
+                {
+                    "Year=" + this.CYear.SelectedValue.ToString(),
+                    "Month=" + this.CMonth.SelectedValue.ToString(),
+                    "Day=" + this.CDay.SelectedValue.ToString(),
+                    "Title=" + (this.TTitle.Text == "" ? "(未命名)" : this.TTitle.Text)
+                };
+                File.WriteAllLines(filename, thisconfig);
             }
             catch (Exception ex)
             {
                 MessageDialog dialog = new MessageDialog(ex.ToString(), ex.Message);
                 dialog.ShowAsync();
             }
-            MainPage.schedules.Add(new countdown_schedule { ID = MainPage.schedules.Count, Name = (this.TTitle.Text == "" ? "(未命名)" : this.TTitle.Text), time = new DateTime((int)this.CYear.SelectedValue == 0 ? (MainPage.GetForeDate(new DateTime(DateTime.Now.Year, (int)this.CMonth.SelectedValue, (int)this.CDay.SelectedValue)) == MainPage.ForeDate.Future ? DateTime.Now.Year : DateTime.Now.Year + 1) : (int)this.CYear.SelectedValue, (int)this.CMonth.SelectedValue, (int)this.CDay.SelectedValue) });
+            MainPage.schedules.Add(new countdown_schedule { ID = MainPage.schedules.Count, Name = (this.TTitle.Text == "" ? "(未命名)" : this.TTitle.Text), time = new DateTime((int)this.CYear.SelectedValue == 0 ? (MainPage.GetForeDate(new DateTime(DateTime.Now.Year, (int)this.CMonth.SelectedValue, (int)this.CDay.SelectedValue)) == MainPage.ForeDate.Future ? DateTime.Now.Year : DateTime.Now.Year + 1) : (int)this.CYear.SelectedValue, (int)this.CMonth.SelectedValue, (int)this.CDay.SelectedValue), filename = filename });
             App.Main?.ReLoadItems();
         }
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)

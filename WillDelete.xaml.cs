@@ -40,7 +40,9 @@ namespace CountDown_Day
             {
                 if (v.ID == argid)
                 {
+                    string filename = v.filename;
                     MainPage.schedules.Remove(v);
+                    File.Delete(filename);
                 }
                 else
                 {

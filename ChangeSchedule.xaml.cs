@@ -40,6 +40,15 @@ namespace CountDown_Day
                     MainPage.schedules[i].time = new DateTime(year == 0 ? (MainPage.GetForeDate(new DateTime(DateTime.Now.Year, this.CMonth.SelectedIndex + 1, this.CDay.SelectedIndex + 1)) == MainPage.ForeDate.Future ? DateTime.Now.Year : DateTime.Now.Year + 1) : year, this.CMonth.SelectedIndex + 1, this.CDay.SelectedIndex + 1);
                     MainPage.schedules[i].Name = this.TTil.Text;
                     File.AppendAllText(localfolder.Path + "\\config.ini", Convert.ToString(year) + " " + this.CMonth.SelectedValue.ToString() + " " + this.CDay.SelectedValue.ToString() + ":" + (this.TTil.Text == "" ? "(未命名)" : this.TTil.Text) + "\n");
+                    string filename = MainPage.schedules[i].filename;
+                    string[] thisconfig =
+                    {
+                        "Year=" + this.CYear.SelectedValue.ToString(),
+                        "Month=" + this.CMonth.SelectedValue.ToString(),
+                        "Day=" + this.CDay.SelectedValue.ToString(),
+                        "Title=" + (this.TTil.Text == "" ? "(未命名)" : this.TTil.Text)
+                    };
+                    File.WriteAllLines(filename, thisconfig);
                 }
                 else
                 {

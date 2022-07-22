@@ -206,6 +206,9 @@
     <PackageReference Include="Microsoft.Web.WebView2">
       <Version>1.0.1264.42</Version>
     </PackageReference>
+    <PackageReference Include="XAct.Core.PCL">
+      <Version>0.0.5014</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
