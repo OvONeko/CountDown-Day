@@ -1,4 +1,7 @@
-﻿
+﻿using System;
+using System.Text;
+using XSystem.Security.Cryptography;
+
 namespace System.IO
 {
     public static class FileExtend
@@ -15,6 +18,20 @@ namespace System.IO
                 return true;
             }
             return false;
+        }
+    }
+}
+
+namespace CountDown_Day
+{
+    public static class HE
+    {
+        public static string Hash(string stringToHash)
+        {
+            using (var sha1 = new SHA1Managed())
+            {
+                return BitConverter.ToString(sha1.ComputeHash(Encoding.UTF8.GetBytes(stringToHash)));
+            }
         }
     }
 }

@@ -32,11 +32,11 @@ namespace CountDown_Day
         }
         private void BDown_Click(object sender, RoutedEventArgs e)
         {
-
+            App.Main?.ReLoadItems(nowid);
         }
         private void BUp_Click(object sender, RoutedEventArgs e)
         {
-
+            App.Main?.ReLoadItems(nowid == 0 ? 0 : nowid - len);
         }
         public void Upd_Schedule(object sender, RoutedEventArgs e)
         {

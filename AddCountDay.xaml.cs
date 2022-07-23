@@ -126,5 +126,13 @@ namespace CountDown_Day
                 }
             }
         }
+        private void ContentDialog_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                ContentDialog_PrimaryButtonClick(sender is ContentDialog ? (ContentDialog)sender : null, null);
+                this.Hide();
+            }
+        }
     }
 }

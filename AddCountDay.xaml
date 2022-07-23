@@ -11,7 +11,7 @@
     SecondaryButtonText="取消"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     SecondaryButtonClick="ContentDialog_SecondaryButtonClick"
-    Loaded="ContentDialog_Loaded">
+    Loaded="ContentDialog_Loaded" KeyDown="ContentDialog_KeyDown">
 
     <Grid>
         <Grid.RowDefinitions>
