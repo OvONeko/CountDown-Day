@@ -44,6 +44,7 @@ namespace CountDown_Day
         public static List<countdown_schedule> schedules = new List<countdown_schedule>();
         public static List<button_map> buttonmaps = new List<button_map>();
         int nowid = 0;
+        int len = (int)((Window.Current.Bounds.Height - 104) / 48);
         public enum ForeDate
         {
             Past = 1,
@@ -186,11 +187,11 @@ namespace CountDown_Day
         }
         //用於修改/添加/刪除倒數日後的重載按鈕
         //用法: App.Main?.ReLoadItems()
-        public void ReLoadItems(int status = 0)
+        public async void ReLoadItems(int status = 0)
         {
             buttonmaps.Clear();
             this.IFrame.Children.Clear();
-            int i = 0;
+            int i = status == 0 ? 0 : status;
             // MessageDialog dialog = new MessageDialog("ReloadItems Detached.");
             // dialog.ShowAsync();
             if (schedules.Count == 0)
@@ -200,23 +201,33 @@ namespace CountDown_Day
             }
             else
                 this.IEmpty.Visibility = Visibility.Collapsed;
+            double h = Window.Current.Bounds.Height - 48.0;
             foreach (var v in schedules)
             {
-                double h = Window.Current.Bounds.Height - 48.0;
-                if (((i + 1) * 48 + 8) < h)
+                if (v.ID < status)
+                    continue;
+                if ((((i - status) + 1) * 48 + 8) < h - 48)
                 {
                     buttonmaps.Add(new button_map { ID = i, button = new Button() });
-                    buttonmaps[i].button.Height = 32;
-                    buttonmaps[i].button.Margin = new Thickness(8, i * 40 + 8, 8, 0);
-                    buttonmaps[i].button.Content = v.time.ToShortDateString() + "\t" + v.Name;
-                    buttonmaps[i].button.Visibility = Visibility.Visible;
-                    buttonmaps[i].button.VerticalAlignment = VerticalAlignment.Top;
-                    buttonmaps[i].button.Click += Upd_Schedule;
-                    buttonmaps[i].button.RightTapped += Change_Schedule;
-                    IFrame.Children.Add(buttonmaps[i].button);
+                    buttonmaps[i - status].button.Height = 32;
+                    buttonmaps[i - status].button.Margin = new Thickness(8, (i - status) * 40 + 8, 8, 0);
+                    buttonmaps[i - status].button.Content = v.time.ToShortDateString() + "\t" + v.Name;
+                    buttonmaps[i - status].button.Visibility = Visibility.Visible;
+                    buttonmaps[i - status].button.VerticalAlignment = VerticalAlignment.Top;
+                    buttonmaps[i - status].button.Click += Upd_Schedule;
+                    buttonmaps[i - status].button.RightTapped += Change_Schedule;
+                    IFrame.Children.Add(buttonmaps[i - status].button);
+                }
+                else if((i - 1) > nowid)
+                {
+                    nowid = i;
+                    break;
                 }
                 i++;
             }
+            if (nowid != i)
+                nowid = 0;
+            this.TPage.Text = Convert.ToString((schedules.Count / len) - (nowid / len) + 1) + "/" + Convert.ToString(schedules.Count / len + 1);
         }
     }
 }
