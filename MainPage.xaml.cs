@@ -33,5 +33,9 @@ namespace CountDown_Day
         private void Grid_Num_Loaded(object sender, RoutedEventArgs e)
         {
         }
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            this.ReLoadItems(nowid);
+        }
     }
 }

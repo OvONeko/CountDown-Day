@@ -201,17 +201,18 @@ namespace CountDown_Day
             }
             else
                 this.IEmpty.Visibility = Visibility.Collapsed;
-            double h = Window.Current.Bounds.Height - 48.0;
+            double h = Window.Current.Bounds.Height;
             foreach (var v in schedules)
             {
                 if (v.ID < status)
                     continue;
-                if ((((i - status) + 1) * 48 + 8) < h - 48)
+                if (((i - status) * 48 + 8) < h)
                 {
                     buttonmaps.Add(new button_map { ID = i, button = new Button() });
                     buttonmaps[i - status].button.Height = 32;
                     buttonmaps[i - status].button.Margin = new Thickness(8, (i - status) * 40 + 8, 8, 0);
-                    buttonmaps[i - status].button.Content = v.time.ToShortDateString() + "\t" + v.Name;
+                    buttonmaps[i - status].button.Content = v.time.ToShortDateString() + "\t\t" + v.Name;
+                    buttonmaps[i - status].button.Width = double.IsNaN(this.IFrame.Width) ? (Window.Current.Bounds.Width * (2.0 / 3.0) - 2 * 72.0) : this.IFrame.Width - 16.0;
                     buttonmaps[i - status].button.Visibility = Visibility.Visible;
                     buttonmaps[i - status].button.VerticalAlignment = VerticalAlignment.Top;
                     buttonmaps[i - status].button.Click += Upd_Schedule;
