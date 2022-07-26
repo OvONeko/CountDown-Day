@@ -38,6 +38,9 @@ namespace CountDown_Day
     {
         public int ID { get; set; }
         public Button button { get; set; }
+        public Grid gridc { get; set; }
+        public TextBlock texttime { get; set; }
+        public TextBlock texttitle { get; set; }
     }
     public sealed partial class MainPage : Page
     {
@@ -208,10 +211,30 @@ namespace CountDown_Day
                     continue;
                 if (((i - status) * 48 + 8) < h)
                 {
-                    buttonmaps.Add(new button_map { ID = i, button = new Button() });
+                    buttonmaps.Add(new button_map { 
+                        ID = i, 
+                        button = new Button(), 
+                        gridc = new Grid(), 
+                        texttime = new TextBlock(), 
+                        texttitle = new TextBlock() 
+                    });
                     buttonmaps[i - status].button.Height = 32;
                     buttonmaps[i - status].button.Margin = new Thickness(8, (i - status) * 40 + 8, 8, 0);
-                    buttonmaps[i - status].button.Content = v.time.ToShortDateString() + "\t\t" + v.Name;
+                    //buttonmaps[i - status].button.Content = v.time.ToShortDateString() + "\t\t" + v.Name;
+                    buttonmaps[i - status].texttime.Text = v.time.ToShortDateString();
+                    buttonmaps[i - status].texttitle.Text = v.Name;
+                    buttonmaps[i - status].texttime.Margin = new Thickness(0, 0, 0, 0);
+                    buttonmaps[i - status].texttitle.Margin = new Thickness(0, 0, 0, 0);
+                    buttonmaps[i - status].texttime.HorizontalAlignment = HorizontalAlignment.Left;
+                    buttonmaps[i - status].texttitle.HorizontalAlignment = HorizontalAlignment.Right;
+                    buttonmaps[i - status].texttime.HorizontalTextAlignment = TextAlignment.Left;
+                    buttonmaps[i - status].texttitle.HorizontalTextAlignment = TextAlignment.Right;
+                    buttonmaps[i - status].gridc.Margin = new Thickness(0, 0, 0, 0);
+                    buttonmaps[i - status].gridc.Children.Add(buttonmaps[i - status].texttime);
+                    buttonmaps[i - status].gridc.Children.Add(buttonmaps[i - status].texttitle);
+                    buttonmaps[i - status].button.Content = buttonmaps[i - status].gridc;
+                    buttonmaps[i - status].button.DataContext = v.time.ToShortDateString() + "\t\t" + v.Name;
+                    buttonmaps[i - status].gridc.Width = double.IsNaN(this.IFrame.Width) ? (Window.Current.Bounds.Width * (2.0 / 3.0) - 256.0) : this.IFrame.Width - 32.0;
                     buttonmaps[i - status].button.Width = double.IsNaN(this.IFrame.Width) ? (Window.Current.Bounds.Width * (2.0 / 3.0) - 2 * 72.0) : this.IFrame.Width - 16.0;
                     buttonmaps[i - status].button.Visibility = Visibility.Visible;
                     buttonmaps[i - status].button.VerticalAlignment = VerticalAlignment.Top;

@@ -40,11 +40,11 @@ namespace CountDown_Day
         }
         public void Upd_Schedule(object sender, RoutedEventArgs e)
         {
-            string til = (string)(((Button)sender).Content);
+            string til = (string)(((Button)sender).DataContext);
             int id = -1;
             foreach (var v in buttonmaps)
             {
-                if (((string)(v.button.Content)) == til)
+                if (((string)(v.button.DataContext)) == til)
                 {
                     id = v.ID;
                     break;
@@ -69,11 +69,11 @@ namespace CountDown_Day
         }
         public void Change_Schedule(object sender, RoutedEventArgs e)
         {
-            string til = (string)(((Button)sender).Content);
+            string til = (string)(((Button)sender).DataContext);
             int id = -1;
             foreach (var v in buttonmaps)
             {
-                if (((string)(v.button.Content)) == til)
+                if (((string)(v.button.DataContext)) == til)
                 {
                     id = v.ID;
                     break;
