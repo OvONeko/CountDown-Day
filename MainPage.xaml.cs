@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -25,6 +26,7 @@ namespace CountDown_Day
     public sealed partial class MainPage : Page
     {
         StorageFolder localfolder;
+        bool tcolor = false;
         public MainPage()
         {
             this.InitializeComponent();
@@ -36,6 +38,14 @@ namespace CountDown_Day
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             this.ReLoadItems(nowid);
+        }
+        private void TTime_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (tcolor)
+                this.TTime.Foreground = this.TAction.Foreground = this.TD0.Foreground = new SolidColorBrush(Color.FromArgb(255, 240, 248, 255));
+            else
+                this.TTime.Foreground = this.TAction.Foreground = this.TD0.Foreground = new SolidColorBrush(Color.FromArgb(255, 10, 10, 10));
+            tcolor = !tcolor;
         }
     }
 }

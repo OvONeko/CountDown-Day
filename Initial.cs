@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -13,6 +14,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 namespace CountDown_Day
@@ -126,6 +128,8 @@ namespace CountDown_Day
                 {
                     if (v.Name.Contains("config.ini"))
                         continue;
+                    if (v.Name.Contains("global.ini"))
+                        continue;
                     string fname = v.FullName;
                     string[] values;
                     try
@@ -148,19 +152,20 @@ namespace CountDown_Day
                         {
                             c[i] = c[i].Trim();
                         }
-                        if (c[0] == "Month")
+                        c[0] = c[0].ToLower();
+                        if (c[0] == "month")
                         {
                             month = Convert.ToInt32(c[1]);
                         }
-                        else if (c[0] == "Day")
+                        else if (c[0] == "day")
                         {
                             day = Convert.ToInt32(c[1]);
                         }
-                        else if (c[0] == "Title")
+                        else if (c[0] == "title")
                         {
                             tl = c[1];
                         }
-                        if (c[0] == "Year")
+                        if (c[0] == "year")
                         {
                             if (((month == 0) || (day == 0)) && (Convert.ToInt32(c[1]) == 0))
                             {
@@ -252,6 +257,112 @@ namespace CountDown_Day
             if (nowid != i)
                 nowid = 0;
             this.TPage.Text = Convert.ToString((schedules.Count / len) - (nowid / len) + 1) + "/" + Convert.ToString(schedules.Count / len + 1);
+        }
+        public async void GImInitial(int cfg = 0)
+        {
+            if (!File.Exists(localfolder.Path + "\\global.ini"))
+                return;
+            if (FileExtend.IsEmpty(localfolder.Path + "\\global.ini"))
+                return;
+            string[] glb = File.ReadAllLines(localfolder.Path + "\\global.ini");
+            foreach (var v in glb)
+            {
+                string[] u = v.Split('=');
+                for (int i = 0; i < u.Length; i++)
+                    u[i] = u[i].Trim();
+                u[0] = u[0].ToLower();
+                if (u[0] == "tcolor")
+                {
+                    try
+                    {
+                        tcolor = ((u[1] == "1") || (u[1] == "true")) ? true : false;
+                        if (tcolor)
+                            this.TTime.Foreground = this.TAction.Foreground = this.TD0.Foreground = new SolidColorBrush(Color.FromArgb(255, 240, 248, 255));
+                        else
+                            this.TTime.Foreground = this.TAction.Foreground = this.TD0.Foreground = new SolidColorBrush(Color.FromArgb(255, 10, 10, 10));
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageDialog dialog = new MessageDialog(ex.ToString(), ex.Message);
+                        dialog.ShowAsync();
+                    }
+                }
+                else if ((u[0] == "background") || (u[0] == "bg"))
+                {
+                    int st = 0;
+                    if (File.Exists(u[1]))
+                        st = 1;
+                    else if (File.Exists(localfolder.Path + "\\" + u[1]))
+                        st = 2;
+                    if (st == 0)
+                        continue;
+                    switch (st)
+                    {
+                        case 1:
+                            try
+                            {
+                                this.IBg.Source = new BitmapImage(new Uri(u[1], UriKind.RelativeOrAbsolute));
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageDialog dialog = new MessageDialog(ex.ToString(), ex.Message);
+                                dialog.ShowAsync();
+                            }
+                            break;
+                        case 2:
+                            try
+                            {
+                                this.IBg.Source = new BitmapImage(new Uri(localfolder.Path + "\\" + u[1], UriKind.RelativeOrAbsolute));
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageDialog dialog = new MessageDialog(ex.ToString(), ex.Message);
+                                dialog.ShowAsync();
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else if ((u[0] == "foreground") || (u[0] == "fg"))
+                {
+                    int st = 0;
+                    if (File.Exists(u[1]))
+                        st = 1;
+                    else if (File.Exists(localfolder.Path + "\\" + u[1]))
+                        st = 2;
+                    if (st == 0)
+                        continue;
+                    switch (st)
+                    {
+                        case 1:
+                            try
+                            {
+                                //this.BFore.Background.SetValue(TagProperty, new BitmapImage(new Uri(u[1], UriKind.RelativeOrAbsolute)));
+                                this.BForeImageBrush.ImageSource = new BitmapImage(new Uri(u[1], UriKind.RelativeOrAbsolute));
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageDialog dialog = new MessageDialog(ex.ToString(), ex.Message);
+                                dialog.ShowAsync();
+                            }
+                            break;
+                        case 2:
+                            try
+                            {
+                                this.BForeImageBrush.ImageSource = new BitmapImage(new Uri(localfolder.Path + "\\" + u[1], UriKind.RelativeOrAbsolute));
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageDialog dialog = new MessageDialog(ex.ToString(), ex.Message);
+                                dialog.ShowAsync();
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
         }
     }
 }

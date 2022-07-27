@@ -22,7 +22,7 @@
             <Grid Margin="0,0,0,0" Height="300" Width="400" VerticalAlignment="Center" HorizontalAlignment="Center" Loaded="Grid_Num_Loaded">
                 <Border x:Name="BFore" Margin="0,0,0,0" Height="300" Width="400" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="30">
                     <Border.Background>
-                        <ImageBrush>
+                        <ImageBrush x:Name="BForeImageBrush">
                             <ImageBrush.ImageSource>
                                 <BitmapImage UriSource="/Assets/Transfer.png"/>
                             </ImageBrush.ImageSource>
@@ -30,9 +30,9 @@
                     </Border.Background>
                     <Grid>
                         <TextBlock Text="{Binding Text, ElementName=TTime}" FontSize="184" Margin="0,0,0,0" Foreground="#22000000" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-                        <TextBlock x:Name="TTime" Text="" FontSize="184" Margin="0,0,0,0" Foreground="AliceBlue" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                        <TextBlock x:Name="TTime" Text="" FontSize="184" Foreground="AliceBlue" VerticalAlignment="Center" HorizontalAlignment="Center" Tapped="TTime_Tapped"></TextBlock>
                         <TextBlock x:Name="TAction" Text="" FontSize="36" Margin="0,0,0,0" Foreground="AliceBlue" VerticalAlignment="Top" HorizontalAlignment="Center"></TextBlock>
-                        <TextBlock Text="天" FontSize="36" Margin="0,0,10,10" Foreground="AliceBlue" VerticalAlignment="Bottom" HorizontalAlignment="Right"></TextBlock>
+                        <TextBlock x:Name="TD0" Text="天" FontSize="36" Margin="0,0,10,10" Foreground="AliceBlue" VerticalAlignment="Bottom" HorizontalAlignment="Right"></TextBlock>
                     </Grid>
                 </Border>
             </Grid>
