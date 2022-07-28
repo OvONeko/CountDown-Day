@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
@@ -42,10 +43,40 @@ namespace CountDown_Day
         private void TTime_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (tcolor)
-                this.TTime.Foreground = this.TAction.Foreground = this.TD0.Foreground = new SolidColorBrush(Color.FromArgb(255, 240, 248, 255));
+            {
+                //this.TTime.Foreground = this.TAction.Foreground = this.TD0.Foreground = new SolidColorBrush(Color.FromArgb(255, 240, 248, 255));
+                this.TextDarkToLight.Begin();
+            }
             else
-                this.TTime.Foreground = this.TAction.Foreground = this.TD0.Foreground = new SolidColorBrush(Color.FromArgb(255, 10, 10, 10));
+            {
+                //this.TTime.Foreground = this.TAction.Foreground = this.TD0.Foreground = new SolidColorBrush(Color.FromArgb(255, 10, 10, 10));
+                this.TextLightToDark.Begin();
+            }
             tcolor = !tcolor;
+            if (!File.Exists(localfolder.Path + "\\global.ini"))
+            {
+                try
+                {
+                    localfolder.CreateFileAsync("global.ini", CreationCollisionOption.FailIfExists);
+                }
+                catch (Exception ex)
+                {
+                    var dialog = new MessageDialog("Cannot Create File:" + localfolder.Path + "\\global.ini\n" + ex.ToString(), ex.Message);
+                    dialog.Options = MessageDialogOptions.AcceptUserInputAfterDelay;
+                    dialog.ShowAsync();
+                }
+                return;
+            }
+            string[] glb = File.ReadAllLines(localfolder.Path + "\\global.ini");
+            File.Delete(localfolder.Path + "\\global.ini");
+            foreach (var v in glb)
+            {
+                if (v.ToLower().Contains("tcolor"))
+                    continue;
+                else
+                    File.AppendAllText(localfolder.Path + "\\global.ini", v);
+            }
+            File.AppendAllText(localfolder.Path + "\\global.ini", "TColor=" + Convert.ToString(tcolor));
         }
     }
 }

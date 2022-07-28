@@ -44,6 +44,11 @@ namespace CountDown_Day
         public TextBlock texttime { get; set; }
         public TextBlock texttitle { get; set; }
     }
+    public struct globalconfig
+    {
+        public string backgroundconfig { get; set; }
+        public string foregroundconfig { get; set; }
+    }
     public sealed partial class MainPage : Page
     {
         public static List<countdown_schedule> schedules = new List<countdown_schedule>();
@@ -72,6 +77,7 @@ namespace CountDown_Day
             else
                 throw new Exception();
         }
+        public static globalconfig glbc = new globalconfig { backgroundconfig = null, foregroundconfig = null };
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             UIElement uIElement = this.IFrame;
@@ -191,6 +197,7 @@ namespace CountDown_Day
                     i6++;
                 }
                 this.ReLoadItems();
+                this.GImInitial();
             }
         }
         //用於修改/添加/刪除倒數日後的重載按鈕
@@ -261,7 +268,19 @@ namespace CountDown_Day
         public async void GImInitial(int cfg = 0)
         {
             if (!File.Exists(localfolder.Path + "\\global.ini"))
+            {
+                try
+                {
+                    localfolder.CreateFileAsync("global.ini", CreationCollisionOption.FailIfExists);
+                }
+                catch (Exception ex)
+                {
+                    var dialog = new MessageDialog("Cannot Create File:" + localfolder.Path + "\\global.ini\n" + ex.ToString(), ex.Message);
+                    dialog.Options = MessageDialogOptions.AcceptUserInputAfterDelay;
+                    dialog.ShowAsync();
+                }
                 return;
+            }
             if (FileExtend.IsEmpty(localfolder.Path + "\\global.ini"))
                 return;
             string[] glb = File.ReadAllLines(localfolder.Path + "\\global.ini");
@@ -275,8 +294,8 @@ namespace CountDown_Day
                 {
                     try
                     {
-                        tcolor = ((u[1] == "1") || (u[1] == "true")) ? true : false;
-                        if (tcolor)
+                        tcolor = ((u[1] == "1") || (u[1].ToLower() == "true")) ? true : false;
+                        if (!tcolor)
                             this.TTime.Foreground = this.TAction.Foreground = this.TD0.Foreground = new SolidColorBrush(Color.FromArgb(255, 240, 248, 255));
                         else
                             this.TTime.Foreground = this.TAction.Foreground = this.TD0.Foreground = new SolidColorBrush(Color.FromArgb(255, 10, 10, 10));
@@ -302,6 +321,7 @@ namespace CountDown_Day
                             try
                             {
                                 this.IBg.Source = new BitmapImage(new Uri(u[1], UriKind.RelativeOrAbsolute));
+                                glbc.backgroundconfig = u[1];
                             }
                             catch (Exception ex)
                             {
@@ -313,6 +333,7 @@ namespace CountDown_Day
                             try
                             {
                                 this.IBg.Source = new BitmapImage(new Uri(localfolder.Path + "\\" + u[1], UriKind.RelativeOrAbsolute));
+                                glbc.backgroundconfig = localfolder.Path + "\\" + u[1];
                             }
                             catch (Exception ex)
                             {
@@ -340,6 +361,7 @@ namespace CountDown_Day
                             {
                                 //this.BFore.Background.SetValue(TagProperty, new BitmapImage(new Uri(u[1], UriKind.RelativeOrAbsolute)));
                                 this.BForeImageBrush.ImageSource = new BitmapImage(new Uri(u[1], UriKind.RelativeOrAbsolute));
+                                glbc.foregroundconfig = u[1];
                             }
                             catch (Exception ex)
                             {
@@ -351,6 +373,7 @@ namespace CountDown_Day
                             try
                             {
                                 this.BForeImageBrush.ImageSource = new BitmapImage(new Uri(localfolder.Path + "\\" + u[1], UriKind.RelativeOrAbsolute));
+                                glbc.foregroundconfig = localfolder.Path + "\\" + u[1];
                             }
                             catch (Exception ex)
                             {

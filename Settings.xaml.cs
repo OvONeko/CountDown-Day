@@ -25,12 +25,28 @@ namespace CountDown_Day
         {
             this.InitializeComponent();
         }
+        private void ContentDialog_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
         private void BOpen_Click(object sender, RoutedEventArgs e)
         {
             Launcher.LaunchFolderAsync(ApplicationData.Current.LocalFolder);
             this.Hide();
         }
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+
+        }
+        private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+
+        }
+        private void BGBg_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void FGBg_Click(object sender, RoutedEventArgs e)
         {
 
         }

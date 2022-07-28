@@ -10,7 +10,16 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     Loaded="Page_Loaded" SizeChanged="Page_SizeChanged">
     <Page.Resources>
-        
+        <Storyboard x:Name="TextLightToDark">
+            <ColorAnimation Duration="0:0:1" From="AliceBlue" To="#FF0C0C0C" Storyboard.TargetName="TTime" Storyboard.TargetProperty="(TTime.Foreground).(SolidColorBrush.Color)"/>
+            <ColorAnimation Duration="0:0:1" From="AliceBlue" To="#FF0C0C0C" Storyboard.TargetName="TAction" Storyboard.TargetProperty="(TAction.Foreground).(SolidColorBrush.Color)"/>
+            <ColorAnimation Duration="0:0:1" From="AliceBlue" To="#FF0C0C0C" Storyboard.TargetName="TD0" Storyboard.TargetProperty="(TD0.Foreground).(SolidColorBrush.Color)"/>
+        </Storyboard>
+        <Storyboard x:Name="TextDarkToLight">
+            <ColorAnimation Duration="0:0:1" From="#FF0C0C0C" To="AliceBlue" Storyboard.TargetName="TTime" Storyboard.TargetProperty="(TTime.Foreground).(SolidColorBrush.Color)"/>
+            <ColorAnimation Duration="0:0:1" From="#FF0C0C0C" To="AliceBlue" Storyboard.TargetName="TAction" Storyboard.TargetProperty="(TAction.Foreground).(SolidColorBrush.Color)"/>
+            <ColorAnimation Duration="0:0:1" From="#FF0C0C0C" To="AliceBlue" Storyboard.TargetName="TD0" Storyboard.TargetProperty="(TD0.Foreground).(SolidColorBrush.Color)"/>
+        </Storyboard>
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
