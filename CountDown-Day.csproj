@@ -134,6 +134,7 @@
     <Compile Include="ChangeSchedule.xaml.cs">
       <DependentUpon>ChangeSchedule.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Handle.cs" />
     <Compile Include="Initial.cs" />
     <Compile Include="IOExtend.cs" />
     <Compile Include="MainPage.xaml.cs">

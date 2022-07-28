@@ -136,6 +136,8 @@ namespace CountDown_Day
                         continue;
                     if (v.Name.Contains("global.ini"))
                         continue;
+                    if (!v.Extension.Contains("ini"))
+                        continue;
                     string fname = v.FullName;
                     string[] values;
                     try
@@ -386,6 +388,10 @@ namespace CountDown_Day
                     }
                 }
             }
+            if ((glbc.backgroundconfig == null) || (glbc.backgroundconfig == ""))
+                this.IBg.Source = new BitmapImage(new Uri("/Assets/normal-bg.jpg", UriKind.RelativeOrAbsolute));
+            if ((glbc.foregroundconfig == null) || (glbc.foregroundconfig == ""))
+                this.BForeImageBrush.ImageSource = new BitmapImage(new Uri("/Assets/Transfer.png", UriKind.RelativeOrAbsolute));
         }
     }
 }

@@ -27,7 +27,7 @@ namespace CountDown_Day
     public sealed partial class MainPage : Page
     {
         StorageFolder localfolder;
-        bool tcolor = false;
+        public static bool tcolor = false;
         public MainPage()
         {
             this.InitializeComponent();

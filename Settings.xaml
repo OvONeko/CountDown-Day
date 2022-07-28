@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         <Grid x:Name="GROpen" Grid.Row="0" Width="450">
             <Button x:Name="BOpen" Click="BOpen_Click" HorizontalAlignment="Center" Width="450">
-                <TextBlock Text="打開設定文件夾"/>
+                <TextBlock Text="打開設定檔案夾"/>
             </Button>
         </Grid>
         <Grid x:Name="GRGlobal" Grid.Row="1" Width="450">
