@@ -247,7 +247,7 @@ namespace CountDown_Day
                     buttonmaps[i - status].gridc.Children.Add(buttonmaps[i - status].texttime);
                     buttonmaps[i - status].gridc.Children.Add(buttonmaps[i - status].texttitle);
                     buttonmaps[i - status].button.Content = buttonmaps[i - status].gridc;
-                    buttonmaps[i - status].button.DataContext = v.time.ToShortDateString() + "\t\t" + v.Name;
+                    buttonmaps[i - status].button.DataContext = v.time.ToShortDateString() + "\t\t" + v.Name + Convert.ToString(i - status);
                     buttonmaps[i - status].gridc.Width = double.IsNaN(this.IFrame.Width) ? (Window.Current.Bounds.Width * (2.0 / 3.0) - 256.0) : this.IFrame.Width - 32.0;
                     buttonmaps[i - status].button.Width = double.IsNaN(this.IFrame.Width) ? (Window.Current.Bounds.Width * (2.0 / 3.0) - 2 * 72.0) : this.IFrame.Width - 16.0;
                     buttonmaps[i - status].button.Visibility = Visibility.Visible;
@@ -281,10 +281,12 @@ namespace CountDown_Day
                     dialog.Options = MessageDialogOptions.AcceptUserInputAfterDelay;
                     dialog.ShowAsync();
                 }
-                return;
+                glbc.backgroundconfig = null;
+                glbc.foregroundconfig = null;
+                goto reset;
             }
             if (FileExtend.IsEmpty(localfolder.Path + "\\global.ini"))
-                return;
+                goto reset;
             string[] glb = File.ReadAllLines(localfolder.Path + "\\global.ini");
             foreach (var v in glb)
             {
@@ -388,10 +390,11 @@ namespace CountDown_Day
                     }
                 }
             }
+            reset:
             if ((glbc.backgroundconfig == null) || (glbc.backgroundconfig == ""))
-                this.IBg.Source = new BitmapImage(new Uri("/Assets/normal-bg.jpg", UriKind.RelativeOrAbsolute));
+                this.IBg.Source = new BitmapImage(new Uri("ms-appx:///Assets/normal-bg.jpg"));
             if ((glbc.foregroundconfig == null) || (glbc.foregroundconfig == ""))
-                this.BForeImageBrush.ImageSource = new BitmapImage(new Uri("/Assets/Transfer.png", UriKind.RelativeOrAbsolute));
+                this.BForeImageBrush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Transfer.png"));
         }
     }
 }
