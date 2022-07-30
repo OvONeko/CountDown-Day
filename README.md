@@ -6,3 +6,5 @@
 
 在這裏還要感謝[@qyl27](https://github.com/qyl27), [@huige233](https://github.com/huige233), [@YukisawaNya](https://github.com/YukisawaNya) 對咱的支持和幫助qwq  
 *在這個repo的contributor裏有幾個transgender, 請幫助她們!*
+
+![Contributors](https://contrib.rocks/image?repo=LS-KR/CountDown-Day)
