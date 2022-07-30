@@ -159,6 +159,7 @@
     <Content Include="Assets\button-settings.png" />
     <Content Include="Assets\button-up.png" />
     <Content Include="Assets\calendar-empty.png" />
+    <Content Include="Assets\dark-bg.jpg" />
     <Content Include="Assets\normal-bg.jpg" />
     <Content Include="Assets\normal-bg.png" />
     <Content Include="Assets\Transfer.png" />

@@ -392,7 +392,7 @@ namespace CountDown_Day
             }
             reset:
             if ((glbc.backgroundconfig == null) || (glbc.backgroundconfig == ""))
-                this.IBg.Source = new BitmapImage(new Uri("ms-appx:///Assets/normal-bg.jpg"));
+                this.IBg.Source = new BitmapImage(Application.Current.RequestedTheme == ApplicationTheme.Light ? (new Uri("ms-appx:///Assets/normal-bg.jpg")) : (new Uri("ms-appx:///Assets/dark-bg.jpg")));
             if ((glbc.foregroundconfig == null) || (glbc.foregroundconfig == ""))
                 this.BForeImageBrush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Transfer.png"));
         }

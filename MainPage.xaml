@@ -8,6 +8,7 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    MinWidth="1000" MinHeight="750"
     Loaded="Page_Loaded" SizeChanged="Page_SizeChanged">
     <Page.Resources>
         <Storyboard x:Name="TextLightToDark">
@@ -47,7 +48,7 @@
             </Grid>
         </Grid>
         <Grid x:Name="lgrid" Grid.Column="0">
-            <Grid Margin="0,0" Background="#EEEEEE" Width="48" HorizontalAlignment="Left">
+            <Grid Margin="0,0" Background="#22888888" Width="48" HorizontalAlignment="Left">
                 <Button x:Name="BAdd" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" Click="BAdd_Click">
                     <Image Source="/Assets/button-add.png" Margin="0,0,0,0" Stretch="Uniform"/>
                 </Button>
@@ -55,7 +56,7 @@
                     <Image Source="/Assets/button-settings.png" Margin="0,0,0,0" Stretch="Uniform"/>
                 </Button>
             </Grid>
-            <Grid Margin="48,0,0,0" Background="#EEEEEE" Height="48" VerticalAlignment="Bottom">
+            <Grid Margin="48,0,0,0" Background="#22888888" Height="48" VerticalAlignment="Bottom">
                 <Grid Margin="0,0,0,0" Height="48" Width="192" HorizontalAlignment="Right">
                     <Button x:Name="BDown" Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="48" Height="48" Click="BDown_Click">
                         <Image Source="/Assets/button-down.png"/>
