@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace CountDown_Day
 {
@@ -22,6 +25,14 @@ namespace CountDown_Day
                 File.AppendAllText(filename, "Background=" + glbc.backgroundconfig + "\n");
             if ((glbc.foregroundconfig != null) && (glbc.foregroundconfig != ""))
                 File.AppendAllText(filename, "Foreground=" + glbc.foregroundconfig + "\n");
+        }
+    }
+    public sealed partial class MainPage : Page
+    {
+        private void Listener_ThemeChanged(object sender)
+        {
+            this.ButtonAdapter();
+            this.GImInitial();
         }
     }
 }

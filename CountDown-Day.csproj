@@ -160,6 +160,10 @@
     <Content Include="Assets\button-up.png" />
     <Content Include="Assets\calendar-empty.png" />
     <Content Include="Assets\dark-bg.jpg" />
+    <Content Include="Assets\indark-button-add.png" />
+    <Content Include="Assets\indark-button-down.png" />
+    <Content Include="Assets\indark-button-settings.png" />
+    <Content Include="Assets\indark-button-up.png" />
     <Content Include="Assets\normal-bg.jpg" />
     <Content Include="Assets\normal-bg.png" />
     <Content Include="Assets\Transfer.png" />

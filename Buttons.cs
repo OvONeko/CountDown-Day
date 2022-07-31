@@ -14,12 +14,30 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 namespace CountDown_Day
 {
     public sealed partial class MainPage : Page
     {
+        private void ButtonAdapter()
+        {
+            if (Application.Current.RequestedTheme == ApplicationTheme.Light)
+            {
+                this.IBAdd.Source = new BitmapImage(new Uri("ms-appx:///Assets/button-add.png"));
+                this.IBDown.Source = new BitmapImage(new Uri("ms-appx:///Assets/button-down.png"));
+                this.IBSetting.Source = new BitmapImage(new Uri("ms-appx:///Assets/button-settings.png"));
+                this.IBUp.Source = new BitmapImage(new Uri("ms-appx:///Assets/button-up.png"));
+            }
+            else
+            {
+                this.IBAdd.Source = new BitmapImage(new Uri("ms-appx:///Assets/indark-button-add.png"));
+                this.IBDown.Source = new BitmapImage(new Uri("ms-appx:///Assets/indark-button-down.png"));
+                this.IBSetting.Source = new BitmapImage(new Uri("ms-appx:///Assets/indark-button-settings.png"));
+                this.IBUp.Source = new BitmapImage(new Uri("ms-appx:///Assets/indark-button-up.png"));
+            }
+        }
         private void BAdd_Click(object sender, RoutedEventArgs e)
         {
             AddCountDay addCountDay = new AddCountDay();

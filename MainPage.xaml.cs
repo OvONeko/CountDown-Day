@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Uwp.UI.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -28,9 +29,11 @@ namespace CountDown_Day
     {
         StorageFolder localfolder;
         public static bool tcolor = false;
+        ThemeListener Listener = new ThemeListener();
         public MainPage()
         {
             this.InitializeComponent();
+            Listener.ThemeChanged += Listener_ThemeChanged;
             localfolder = ApplicationData.Current.LocalFolder;
         }
         private void Grid_Num_Loaded(object sender, RoutedEventArgs e)

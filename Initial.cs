@@ -200,6 +200,7 @@ namespace CountDown_Day
                 }
                 this.ReLoadItems();
                 this.GImInitial();
+                this.ButtonAdapter();
             }
         }
         //用於修改/添加/刪除倒數日後的重載按鈕
