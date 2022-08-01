@@ -395,7 +395,22 @@ namespace CountDown_Day
             if ((glbc.backgroundconfig == null) || (glbc.backgroundconfig == ""))
                 this.IBg.Source = new BitmapImage(Application.Current.RequestedTheme == ApplicationTheme.Light ? (new Uri("ms-appx:///Assets/normal-bg.jpg")) : (new Uri("ms-appx:///Assets/dark-bg.jpg")));
             if ((glbc.foregroundconfig == null) || (glbc.foregroundconfig == ""))
+                this.BForeImageBrush.ImageSource = new BitmapImage(Application.Current.RequestedTheme == ApplicationTheme.Light ? (new Uri("ms-appx:///Assets/note-light.png")) : (new Uri("ms-appx:///Assets/note-dark.png")));
+            if ((DateTime.Now.Month == 3) && (DateTime.Now.Day == 31))
                 this.BForeImageBrush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Transfer.png"));
+            if (DateTime.Now.Month == 6)
+            {
+                Random random = new Random();
+                int i = (int)(DateTime.Now.Ticks % 20);
+                int c = 0;
+                while (i > 0)
+                {
+                    c = random.Next(0, 31);
+                    i--;
+                }
+                if (c == 7)
+                    this.BForeImageBrush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/progress_pride_flag_4-3.png"));
+            }
         }
     }
 }
