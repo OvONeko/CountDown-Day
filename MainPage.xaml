@@ -8,7 +8,7 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    MinWidth="1000" MinHeight="750"
+    MinWidth="644" MinHeight="396"
     Loaded="Page_Loaded" SizeChanged="Page_SizeChanged">
     <Page.Resources>
         <Storyboard x:Name="TextLightToDark">
@@ -25,7 +25,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*" />
-            <ColumnDefinition Width="2*" />
+            <ColumnDefinition x:Name="GDyn" Width="500" />
         </Grid.ColumnDefinitions>
         <Grid x:Name="rgrid" Grid.Column="1">
             <Image x:Name="IBg" Source="/Assets/normal-bg.jpg" Stretch="UniformToFill"/>

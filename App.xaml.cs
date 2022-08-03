@@ -7,6 +7,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -79,6 +80,13 @@ namespace CountDown_Day
                 // 确保当前窗口处于活动状态
                 Window.Current.Activate();
             }
+
+            // set the smallest size of the uwp window
+            // but it may not to be done...
+
+            var minsize = new Size(644, 396);
+            ApplicationView view = ApplicationView.GetForCurrentView();
+            view.SetPreferredMinSize(minsize);
         }
 
         /// <summary>
@@ -103,6 +111,29 @@ namespace CountDown_Day
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: 保存应用程序状态并停止任何后台活动
             deferral.Complete();
+        }
+
+        //Hard implementation enforces window size.
+        private readonly double minW = 644, minH = 396;
+        protected override void OnWindowCreated(WindowCreatedEventArgs args)
+        {
+            SetWindowMinSize(new Size(args.Window.Bounds.Width, args.Window.Bounds.Height));
+            args.Window.CoreWindow.SizeChanged += CoreWindow_SizeChanged;
+            base.OnWindowCreated(args);
+        }
+        private void CoreWindow_SizeChanged(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.WindowSizeChangedEventArgs args)
+        {
+            if (SetWindowMinSize(args.Size)) sender.ReleasePointerCapture();
+        }
+        private bool SetWindowMinSize(Size size)
+        {
+            if (size.Width < minW || size.Height < minH)
+            {
+                if (size.Width < minW) size.Width = minW;
+                if (size.Height < minH) size.Height = minH;
+                return ApplicationView.GetForCurrentView().TryResizeView(size);
+            }
+            return false;
         }
     }
 }

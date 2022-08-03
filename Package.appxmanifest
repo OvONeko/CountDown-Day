@@ -10,8 +10,8 @@
 
   <Identity
     Name="83d67a87-5d9b-4e12-b082-7d22cde98bd2"
-    Publisher="CN=AAAAAAAA"
-    Version="1.0.0.0" />
+    Publisher="CN=Elihuso"
+    Version="0.1.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="83d67a87-5d9b-4e12-b082-7d22cde98bd2" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

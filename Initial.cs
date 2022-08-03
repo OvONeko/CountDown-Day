@@ -199,9 +199,9 @@ namespace CountDown_Day
                     i6++;
                 }
                 this.ReLoadItems();
-                this.GImInitial();
-                this.ButtonAdapter();
             }
+            this.GImInitial();
+            this.ButtonAdapter();
         }
         //用於修改/添加/刪除倒數日後的重載按鈕
         //用法: App.Main?.ReLoadItems()
@@ -249,8 +249,16 @@ namespace CountDown_Day
                     buttonmaps[i - status].gridc.Children.Add(buttonmaps[i - status].texttitle);
                     buttonmaps[i - status].button.Content = buttonmaps[i - status].gridc;
                     buttonmaps[i - status].button.DataContext = v.time.ToShortDateString() + "\t\t" + v.Name + Convert.ToString(i - status);
-                    buttonmaps[i - status].gridc.Width = double.IsNaN(this.IFrame.Width) ? (Window.Current.Bounds.Width * (2.0 / 3.0) - 256.0) : this.IFrame.Width - 32.0;
-                    buttonmaps[i - status].button.Width = double.IsNaN(this.IFrame.Width) ? (Window.Current.Bounds.Width * (2.0 / 3.0) - 2 * 72.0) : this.IFrame.Width - 16.0;
+                    try
+                    {
+                        buttonmaps[i - status].gridc.Width = double.IsNaN(this.IFrame.Width) ? (Window.Current.Bounds.Width - 612) : this.IFrame.Width - 32.0;
+                        buttonmaps[i - status].button.Width = double.IsNaN(this.IFrame.Width) ? (Window.Current.Bounds.Width - 564) : this.IFrame.Width - 16.0;
+                    }
+                    catch (Exception ex)
+                    {
+                        var dialog = new MessageDialog(ex.ToString(), ex.Message);
+                        dialog.ShowAsync();
+                    }
                     buttonmaps[i - status].button.Visibility = Visibility.Visible;
                     buttonmaps[i - status].button.VerticalAlignment = VerticalAlignment.Top;
                     buttonmaps[i - status].button.Click += Upd_Schedule;
@@ -284,6 +292,12 @@ namespace CountDown_Day
                 }
                 glbc.backgroundconfig = null;
                 glbc.foregroundconfig = null;
+                if (Application.Current.RequestedTheme == ApplicationTheme.Light)
+                {
+                    tcolor = true;
+                    this.TTime.Foreground = this.TAction.Foreground = this.TD0.Foreground = new SolidColorBrush(Color.FromArgb(255, 10, 10, 10));
+                    File.AppendAllText(localfolder.Path + "\\global.ini", "TColor=" + Convert.ToString(tcolor));
+                }
                 goto reset;
             }
             if (FileExtend.IsEmpty(localfolder.Path + "\\global.ini"))
