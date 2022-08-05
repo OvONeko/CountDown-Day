@@ -58,7 +58,6 @@ namespace CountDown_Day
             // await CoreApplication.RequestRestartAsync("");//No QAQ
             // qyl27: MainPage instance got!
             App.Main?.ReLoadItems();
-            // Task.Run(App.Main.ReLoadItems);
         }
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {

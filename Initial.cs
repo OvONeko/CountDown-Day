@@ -19,14 +19,12 @@ using Windows.UI.Xaml.Navigation;
 
 namespace CountDown_Day
 {
-    //用於ComboBox
     public class drop_down_list
     {
         public string Name { get; set; }
         public int ID { get; set; }
         public int IDS { get; set; }
     }
-    //倒數日記錄, ID用於傳參
     public class countdown_schedule
     {
         public int ID { get; set; }
@@ -35,7 +33,6 @@ namespace CountDown_Day
         public bool isshow { get; set; }
         public string filename { get; set; }
     }
-    //按鈕記錄, ID用於傳參
     public class button_map
     {
         public int ID { get; set; }
@@ -203,8 +200,6 @@ namespace CountDown_Day
             this.GImInitial();
             this.ButtonAdapter();
         }
-        //用於修改/添加/刪除倒數日後的重載按鈕
-        //用法: App.Main?.ReLoadItems()
         public async void ReLoadItems(int status = 0)
         {
             buttonmaps.Clear();
@@ -378,7 +373,6 @@ namespace CountDown_Day
                         case 1:
                             try
                             {
-                                //this.BFore.Background.SetValue(TagProperty, new BitmapImage(new Uri(u[1], UriKind.RelativeOrAbsolute)));
                                 this.BForeImageBrush.ImageSource = new BitmapImage(new Uri(u[1], UriKind.RelativeOrAbsolute));
                                 glbc.foregroundconfig = u[1];
                             }
