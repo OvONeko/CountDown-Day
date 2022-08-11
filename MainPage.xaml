@@ -64,7 +64,7 @@
                     <Button x:Name="BUp" Margin="0,0,144,0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="48" Height="48" Click="BUp_Click">
                         <Image x:Name="IBUp" Source="/Assets/button-up.png"/>
                     </Button>
-                    <TextBlock x:Name="TPage" Text="0/0" FontSize="28" Margin="48,0,48,0" HorizontalTextAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas"/>
+                    <TextBlock x:Name="TPage" Text="0/0" FontSize="24" Margin="48,0,48,0" HorizontalTextAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas"/>
                 </Grid>
             </Grid>
             <Grid x:Name="IFrame" x:FieldModifier="Public" Margin="48,0,0,0" DataContext="{Binding}">
