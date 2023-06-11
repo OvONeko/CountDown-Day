@@ -166,6 +166,8 @@
     <Content Include="Assets\button-down.png" />
     <Content Include="Assets\button-settings.png" />
     <Content Include="Assets\button-up.png" />
+    <Content Include="Assets\button_lable_dark.png" />
+    <Content Include="Assets\button_lable_light.png" />
     <Content Include="Assets\calendar-empty.png" />
     <Content Include="Assets\dark-bg.jpg" />
     <Content Include="Assets\indark-button-add.png" />

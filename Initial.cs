@@ -200,6 +200,7 @@ namespace CountDown_Day
                     });
                     buttonmaps[i - status].button.Height = 32;
                     buttonmaps[i - status].button.Margin = new Thickness(8, (i - status) * 40 + 8, 8, 0);
+                    buttonmaps[i - status].button.Style = (Application.Current.RequestedTheme == ApplicationTheme.Light) ? (Style)Resources["Button_Lable_Light"] : (Style)Resources["Button_Lable_Dark"];
                     //buttonmaps[i - status].button.Content = v.time.ToShortDateString() + "\t\t" + v.Name;
                     buttonmaps[i - status].texttime.Text = v.time.ToShortDateString();
                     buttonmaps[i - status].texttitle.Text = v.Name;
@@ -207,7 +208,7 @@ namespace CountDown_Day
                     buttonmaps[i - status].texttitle.Margin = new Thickness(0, 0, 0, 0);
                     buttonmaps[i - status].texttime.HorizontalAlignment = HorizontalAlignment.Left;
                     buttonmaps[i - status].texttitle.HorizontalAlignment = HorizontalAlignment.Right;
-                    buttonmaps[i - status].texttime.HorizontalTextAlignment = TextAlignment.Left;
+                    buttonmaps[i - status].texttime.HorizontalTextAlignment = TextAlignment.Right;
                     buttonmaps[i - status].texttitle.HorizontalTextAlignment = TextAlignment.Center;
                     buttonmaps[i - status].gridc.Margin = new Thickness(0, 0, 0, 0);
                     buttonmaps[i - status].gridc.Children.Add(buttonmaps[i - status].texttime);
