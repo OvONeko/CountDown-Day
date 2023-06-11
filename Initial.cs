@@ -215,6 +215,7 @@ namespace CountDown_Day
                     buttonmaps[i - status].gridc.Children.Add(buttonmaps[i - status].texttitle);
                     buttonmaps[i - status].button.Content = buttonmaps[i - status].gridc;
                     buttonmaps[i - status].button.DataContext = v.time.ToShortDateString() + "\t\t" + v.Name + Convert.ToString(i - status);
+                    buttonmaps[i - status].button.PointerEntered += Button_PointerEntered;
                     try
                     {
                         buttonmaps[i - status].gridc.Width = double.IsNaN(this.IFrame.Width) ? (Window.Current.Bounds.Width - 612) : this.IFrame.Width - 32.0;
@@ -242,6 +243,7 @@ namespace CountDown_Day
                 nowid = 0;
             this.TPage.Text = Convert.ToString((schedules.Count / len) - (nowid / len) + 1) + "/" + Convert.ToString(schedules.Count / len + 1);
         }
+
         public async void GImInitial(int cfg = 0)
         {
             if (!File.Exists(localfolder.Path + "\\global.ini"))
