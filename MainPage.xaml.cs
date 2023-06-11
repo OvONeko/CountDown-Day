@@ -47,12 +47,10 @@ namespace CountDown_Day
         {
             if (tcolor)
             {
-                //this.TTime.Foreground = this.TAction.Foreground = this.TD0.Foreground = new SolidColorBrush(Color.FromArgb(255, 240, 248, 255));
                 this.TextDarkToLight.Begin();
             }
             else
             {
-                //this.TTime.Foreground = this.TAction.Foreground = this.TD0.Foreground = new SolidColorBrush(Color.FromArgb(255, 10, 10, 10));
                 this.TextLightToDark.Begin();
             }
             tcolor = !tcolor;
