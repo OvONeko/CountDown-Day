@@ -95,36 +95,6 @@ namespace CountDown_Day
             }
             else
             {
-                /*if (FileExtend.IsEmpty(localfolder.Path + "\\config.ini"))
-                {
-                    this.IEmpty.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    string[] schedule = File.ReadAllLines(localfolder.Path + "\\config.ini");
-                    int i = 0;
-                    foreach (var v in schedule)
-                    {
-                        string[] args = v.Split(new char[] { ' ', ':' });
-                        DateTime targetdt = new DateTime(Convert.ToInt32(args[0]) == 0 ? (GetForeDate(new DateTime(DateTime.Now.Year, Convert.ToInt32(args[1]), Convert.ToInt32(args[2]))) == ForeDate.Future ? DateTime.Now.Year : DateTime.Now.Year + 1) : Convert.ToInt32(args[0]), Convert.ToInt32(args[1]), Convert.ToInt32(args[2]));
-                        schedules.Add(new countdown_schedule { ID = i, isshow = false, Name = args[3], time = targetdt });
-                        double h = Window.Current.Bounds.Height - 48.0;
-                        if (((i + 1) * 48 + 8) < h)
-                        {
-                            buttonmaps.Add(new button_map { ID = i, button = new Button() });
-                            buttonmaps[i].button.Height = 32;
-                            buttonmaps[i].button.Margin = new Thickness(8, i * 40 + 8, 8, 0);
-                            buttonmaps[i].button.Content = targetdt.ToShortDateString() + "\t" + args[3];
-                            buttonmaps[i].button.Visibility = Visibility.Visible;
-                            buttonmaps[i].button.VerticalAlignment = VerticalAlignment.Top;
-                            buttonmaps[i].button.Click += Upd_Schedule;
-                            buttonmaps[i].button.RightTapped += Change_Schedule;
-                            this.IFrame.Children.Add(buttonmaps[i].button);
-                        }
-                        i++;
-                    }
-                    
-                }*/
                 DirectoryInfo di = new DirectoryInfo(localfolder.Path);
                 int i6 = 0;
                 foreach (var v in di.GetFiles())
@@ -238,7 +208,7 @@ namespace CountDown_Day
                     buttonmaps[i - status].texttime.HorizontalAlignment = HorizontalAlignment.Left;
                     buttonmaps[i - status].texttitle.HorizontalAlignment = HorizontalAlignment.Right;
                     buttonmaps[i - status].texttime.HorizontalTextAlignment = TextAlignment.Left;
-                    buttonmaps[i - status].texttitle.HorizontalTextAlignment = TextAlignment.Right;
+                    buttonmaps[i - status].texttitle.HorizontalTextAlignment = TextAlignment.Center;
                     buttonmaps[i - status].gridc.Margin = new Thickness(0, 0, 0, 0);
                     buttonmaps[i - status].gridc.Children.Add(buttonmaps[i - status].texttime);
                     buttonmaps[i - status].gridc.Children.Add(buttonmaps[i - status].texttitle);

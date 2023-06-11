@@ -21,6 +21,9 @@
             <ColorAnimation Duration="0:0:0.5" From="#FF0C0C0C" To="AliceBlue" Storyboard.TargetName="TAction" Storyboard.TargetProperty="(TAction.Foreground).(SolidColorBrush.Color)"/>
             <ColorAnimation Duration="0:0:0.5" From="#FF0C0C0C" To="AliceBlue" Storyboard.TargetName="TD0" Storyboard.TargetProperty="(TD0.Foreground).(SolidColorBrush.Color)"/>
         </Storyboard>
+        <Style TargetType="Button" x:Key="Button_Lable">
+            
+        </Style>
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
