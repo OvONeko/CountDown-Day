@@ -153,7 +153,7 @@ namespace CountDown_Day
                             }
                             else
                             {
-                                year = MainPage.GetForeDate(new DateTime(DateTime.Now.Year, month, day)) == ForeDate.Future ? DateTime.Now.Year : DateTime.Now.Year + 1;
+                                year = MainPage.GetForeDate(new DateTime(DateTime.Now.Year, month, day)) == ForeDate.Past ? DateTime.Now.Year + 1 : DateTime.Now.Year;
                             }
                         }
                     }
