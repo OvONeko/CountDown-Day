@@ -75,7 +75,7 @@ namespace CountDown_Day
                 {
                     if (v.ID == argid)
                     {
-                        this.TTil.Text = "確定要刪除" + v.Name + "嗎?";
+                        this.TTil.Text = "确定要删除" + v.Name + "嘛?";
                     }
                 }
             }

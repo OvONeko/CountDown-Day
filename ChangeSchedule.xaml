@@ -6,8 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Title="修改倒數日"
-    PrimaryButtonText="確認"
+    Title="修改倒数日"
+    PrimaryButtonText="确认"
     SecondaryButtonText="取消"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     SecondaryButtonClick="ContentDialog_SecondaryButtonClick"
@@ -24,8 +24,8 @@
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="TTil" Grid.Column="0" Text="" PlaceholderText="主題…"/>
-            <Button x:Name="BDel" Content="刪除" Grid.Column="1" Click="BDel_Click" HorizontalAlignment="Right"/>
+            <TextBox x:Name="TTil" Grid.Column="0" Text="" PlaceholderText="主题…"/>
+            <Button x:Name="BDel" Content="删除" Grid.Column="1" Click="BDel_Click" HorizontalAlignment="Right"/>
         </Grid>
         <ComboBox x:Name="CYear" Width="87.5" Margin="0,0,0,0" VerticalContentAlignment="Center" HorizontalAlignment="Left" DataContext="{Binding}" ItemsSource="{Binding}" Grid.Row="2"></ComboBox>
         <ComboBox x:Name="CMonth" Width="75" Margin="100,0,0,0" VerticalContentAlignment="Center" HorizontalAlignment="Left" DataContext="{Binding}" ItemsSource="{Binding}" Grid.Row="2" SelectionChanged="CMonth_SelectionChanged"></ComboBox>

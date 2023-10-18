@@ -6,8 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Title="設定"
-    PrimaryButtonText="確認"
+    Title="设定"
+    PrimaryButtonText="确认"
     SecondaryButtonText="取消"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     SecondaryButtonClick="ContentDialog_SecondaryButtonClick"
@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         <Grid x:Name="GROpen" Grid.Row="0" Width="450">
             <Button x:Name="BOpen" Click="BOpen_Click" HorizontalAlignment="Center" Width="450">
-                <TextBlock Text="打開設定檔案夾"/>
+                <TextBlock Text="打开设定文件夹"/>
             </Button>
         </Grid>
         <Grid x:Name="GRGlobal" Grid.Row="1" Width="450">
@@ -32,10 +32,10 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <TextBox x:Name="TGBg" Grid.Column="0" Grid.Row="0" Text="" PlaceholderText="背景圖片路徑..."/>
-            <TextBox x:Name="TGFg" Grid.Column="0" Grid.Row="1" Text="" PlaceholderText="前景圖片路徑..."/>
-            <Button x:Name="BGBg" Grid.Column="1" Grid.Row="0" Width="75" Content="搜尋" Click="BGBg_Click"/>
-            <Button x:Name="FGBg" Grid.Column="1" Grid.Row="1" Width="75" Content="搜尋" Click="FGBg_Click"/>
+            <TextBox x:Name="TGBg" Grid.Column="0" Grid.Row="0" Text="" PlaceholderText="背景图片路径..."/>
+            <TextBox x:Name="TGFg" Grid.Column="0" Grid.Row="1" Text="" PlaceholderText="前景图片路径..."/>
+            <Button x:Name="BGBg" Grid.Column="1" Grid.Row="0" Width="75" Content="搜索" Click="BGBg_Click"/>
+            <Button x:Name="FGBg" Grid.Column="1" Grid.Row="1" Width="75" Content="搜索" Click="FGBg_Click"/>
         </Grid>
     </Grid>
 </ContentDialog>

@@ -191,12 +191,13 @@ namespace CountDown_Day
                     continue;
                 if (((i - status) * 48 + 8) < h)
                 {
-                    buttonmaps.Add(new button_map { 
-                        ID = i, 
-                        button = new Button(), 
-                        gridc = new Grid(), 
-                        texttime = new TextBlock(), 
-                        texttitle = new TextBlock() 
+                    buttonmaps.Add(new button_map
+                    {
+                        ID = i,
+                        button = new Button(),
+                        gridc = new Grid(),
+                        texttime = new TextBlock(),
+                        texttitle = new TextBlock()
                     });
                     buttonmaps[i - status].button.Height = 32;
                     buttonmaps[i - status].button.Margin = new Thickness(8, (i - status) * 40 + 8, 8, 0);
@@ -231,7 +232,7 @@ namespace CountDown_Day
                     buttonmaps[i - status].button.RightTapped += Change_Schedule;
                     IFrame.Children.Add(buttonmaps[i - status].button);
                 }
-                else if((i - 1) > nowid)
+                else if ((i - 1) > nowid)
                 {
                     nowid = i;
                     break;
@@ -371,7 +372,7 @@ namespace CountDown_Day
                     }
                 }
             }
-            reset:
+        reset:
             if ((glbc.backgroundconfig == null) || (glbc.backgroundconfig == ""))
                 this.IBg.Source = new BitmapImage(Application.Current.RequestedTheme == ApplicationTheme.Light ? (new Uri("ms-appx:///Assets/normal-bg.jpg")) : (new Uri("ms-appx:///Assets/dark-bg.jpg")));
             if ((glbc.foregroundconfig == null) || (glbc.foregroundconfig == ""))
