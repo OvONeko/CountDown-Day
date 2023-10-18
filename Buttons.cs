@@ -76,9 +76,9 @@ namespace CountDown_Day
                 DateTime tdt = schedules[id].time;
                 string ce;
                 if (GetForeDate(tdt) == ForeDate.Future)
-                    ce = "還有";
+                    ce = "还有";
                 else
-                    ce = "已經";
+                    ce = "已经";
                 TimeSpan dif = tdt - DateTime.Now;
                 int d = (int)(dif.TotalDays < 0 ? -dif.TotalDays : dif.TotalDays);
                 this.TAction.Text = title + ce;

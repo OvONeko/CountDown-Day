@@ -77,7 +77,7 @@ namespace CountDown_Day
         public static globalconfig glbc = new globalconfig { backgroundconfig = null, foregroundconfig = null };
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            UIElement uIElement = this.IFrame;
+            UIElement uIElement = this.IEmpty;
             if (!File.Exists(localfolder.Path + "\\config.ini"))
             {
                 //嘗試創建文件並顯示「空」選項
@@ -91,79 +91,85 @@ namespace CountDown_Day
                     dialog.Options = MessageDialogOptions.AcceptUserInputAfterDelay;
                     dialog.ShowAsync();
                 }
-                this.IEmpty.Visibility = Visibility.Visible;
+                uIElement.Visibility = Visibility.Visible;
             }
             else
             {
-                DirectoryInfo di = new DirectoryInfo(localfolder.Path);
-                int i6 = 0;
-                foreach (var v in di.GetFiles())
+                FileInfo info = new FileInfo(localfolder.Path + "\\config.ini");
+                if (info.Length == 0)
+                    uIElement.Visibility = Visibility.Visible;
+                else
                 {
-                    if (v.Name.Contains("config.ini"))
-                        continue;
-                    if (v.Name.Contains("global.ini"))
-                        continue;
-                    if (!v.Extension.Contains("ini"))
-                        continue;
-                    string fname = v.FullName;
-                    string[] values;
-                    try
+                    DirectoryInfo di = new DirectoryInfo(localfolder.Path);
+                    int i6 = 0;
+                    foreach (var v in di.GetFiles())
                     {
-                        values = File.ReadAllLines(fname);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageDialog dialog = new MessageDialog(ex.ToString(), ex.Message);
-                        return;
-                    }
-                    int year = 0, month = 0, day = 0;
-                    string tl = "";
-                    int yst = 0;
-                    bool isst = false;
-                    foreach (var u in values)
-                    {
-                        string[] c = u.Split('=');
-                        for (int i = 0; i < c.Length; i++)
+                        if (v.Name.Contains("config.ini"))
+                            continue;
+                        if (v.Name.Contains("global.ini"))
+                            continue;
+                        if (!v.Extension.Contains("ini"))
+                            continue;
+                        string fname = v.FullName;
+                        string[] values;
+                        try
                         {
-                            c[i] = c[i].Trim();
+                            values = File.ReadAllLines(fname);
                         }
-                        c[0] = c[0].ToLower();
-                        if (c[0] == "month")
+                        catch (Exception ex)
                         {
-                            month = Convert.ToInt32(c[1]);
+                            MessageDialog dialog = new MessageDialog(ex.ToString(), ex.Message);
+                            return;
                         }
-                        else if (c[0] == "day")
+                        int year = 0, month = 0, day = 0;
+                        string tl = "";
+                        int yst = 0;
+                        bool isst = false;
+                        foreach (var u in values)
                         {
-                            day = Convert.ToInt32(c[1]);
-                        }
-                        else if (c[0] == "title")
-                        {
-                            tl = c[1];
-                        }
-                        if (c[0] == "year")
-                        {
-                            if (((month == 0) || (day == 0)) && (Convert.ToInt32(c[1]) == 0))
+                            string[] c = u.Split('=');
+                            for (int i = 0; i < c.Length; i++)
                             {
-                                isst = true;
-                                yst = Convert.ToInt32(c[1]);
+                                c[i] = c[i].Trim();
                             }
-                            else if (Convert.ToInt32(c[1]) != 0)
+                            c[0] = c[0].ToLower();
+                            if (c[0] == "month")
                             {
-                                year = Convert.ToInt32(c[1]);
+                                month = Convert.ToInt32(c[1]);
                             }
-                            else
+                            else if (c[0] == "day")
                             {
-                                year = MainPage.GetForeDate(new DateTime(DateTime.Now.Year, month, day)) == ForeDate.Past ? DateTime.Now.Year + 1 : DateTime.Now.Year;
+                                day = Convert.ToInt32(c[1]);
+                            }
+                            else if (c[0] == "title")
+                            {
+                                tl = c[1];
+                            }
+                            if (c[0] == "year")
+                            {
+                                if (((month == 0) || (day == 0)) && (Convert.ToInt32(c[1]) == 0))
+                                {
+                                    isst = true;
+                                    yst = Convert.ToInt32(c[1]);
+                                }
+                                else if (Convert.ToInt32(c[1]) != 0)
+                                {
+                                    year = Convert.ToInt32(c[1]);
+                                }
+                                else
+                                {
+                                    year = MainPage.GetForeDate(new DateTime(DateTime.Now.Year, month, day)) == ForeDate.Past ? DateTime.Now.Year + 1 : DateTime.Now.Year;
+                                }
                             }
                         }
+                        if (isst)
+                        {
+                            year = yst == 0 ? (MainPage.GetForeDate(new DateTime(DateTime.Now.Year, month, day)) == ForeDate.Future ? DateTime.Now.Year : DateTime.Now.Year + 1) : yst;
+                        }
+                        DateTime targetdt = new DateTime(year, month, day);
+                        schedules.Add(new countdown_schedule { ID = i6, isshow = false, Name = tl, time = targetdt, filename = fname });
+                        i6++;
                     }
-                    if (isst)
-                    {
-                        year = yst == 0 ? (MainPage.GetForeDate(new DateTime(DateTime.Now.Year, month, day)) == ForeDate.Future ? DateTime.Now.Year : DateTime.Now.Year + 1) : yst;
-                    }
-                    DateTime targetdt = new DateTime(year, month, day);
-                    schedules.Add(new countdown_schedule { ID = i6, isshow = false, Name = tl, time = targetdt, filename = fname });
-                    i6++;
                 }
                 this.ReLoadItems();
             }

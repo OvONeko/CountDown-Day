@@ -81,7 +81,8 @@
                     <TextBlock x:Name="TPage" Text="0/0" FontSize="24" Margin="48,0,48,0" HorizontalTextAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas"/>
                 </Grid>
             </Grid>
-            <Grid x:Name="IFrame" x:FieldModifier="Public" Margin="48,0,0,0" DataContext="{Binding}">
+            <Grid x:Name="IFrame" x:FieldModifier="Public" Margin="48,1,1,48" DataContext="{Binding}"></Grid>
+            <Grid Margin="48,1,1,48" x:FieldModifier="Public">
                 <Image x:Name="IEmpty" Source="/Assets/calendar-empty.png" Width="400" Height="400" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Fill" Visibility="Collapsed"/>
             </Grid>
         </Grid>
