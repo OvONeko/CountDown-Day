@@ -1,1 +1,3 @@
-![Contributors](https://contrib.rocks/image?repo=LS-KR/CountDown-Day)
+## Contributors
+
+![Contributors](https://contrib.rocks/image?repo=OvONeko/CountDown-Day)
