@@ -5,3 +5,6 @@ bin/
 obj/
 
 .idea/
+
+BundleArtifacts/
+AppPackages/
