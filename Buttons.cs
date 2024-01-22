@@ -74,6 +74,8 @@ namespace CountDown_Day
             {
                 string title = schedules[id].Name;
                 DateTime tdt = schedules[id].time;
+                DateTime nowPlus = DateTime.Now.AddSeconds(10);
+                tdt = new DateTime(tdt.Year, tdt.Month, tdt.Day, nowPlus.Hour, nowPlus.Minute, nowPlus.Second);
                 string ce;
                 if (GetForeDate(tdt) == ForeDate.Future)
                     ce = "还有";

@@ -158,13 +158,13 @@ namespace CountDown_Day
                                 }
                                 else
                                 {
-                                    year = MainPage.GetForeDate(new DateTime(DateTime.Now.Year, month, day)) == ForeDate.Past ? DateTime.Now.Year + 1 : DateTime.Now.Year;
+                                    year = MainPage.GetForeDate(new DateTime(DateTime.Now.Year, month, day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second).AddSeconds(10)) == ForeDate.Past ? DateTime.Now.Year + 1 : DateTime.Now.Year;
                                 }
                             }
                         }
                         if (isst)
                         {
-                            year = yst == 0 ? (MainPage.GetForeDate(new DateTime(DateTime.Now.Year, month, day)) == ForeDate.Future ? DateTime.Now.Year : DateTime.Now.Year + 1) : yst;
+                            year = yst == 0 ? (MainPage.GetForeDate(new DateTime(DateTime.Now.Year, month, day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second).AddSeconds(10)) == ForeDate.Future ? DateTime.Now.Year : DateTime.Now.Year + 1) : yst;
                         }
                         DateTime targetdt = new DateTime(year, month, day);
                         schedules.Add(new countdown_schedule { ID = i6, isshow = false, Name = tl, time = targetdt, filename = fname });
