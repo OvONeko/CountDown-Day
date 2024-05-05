@@ -25,7 +25,8 @@ namespace CountDown_Day {
                     "Year=" + this.CYear.SelectedValue.ToString(),
                     "Month=" + this.CMonth.SelectedValue.ToString(),
                     "Day=" + this.CDay.SelectedValue.ToString(),
-                    "Title=" + (this.TTitle.Text == "" ? "(未命名)" : this.TTitle.Text)
+                    "Title=" + (this.TTitle.Text == "" ? "(未命名)" : this.TTitle.Text),
+                    "Pinned=" + ((bool)this.CPinned.IsChecked ? "1" : "0")
                 };
                 File.WriteAllLines(filename, thisconfig);
             }
@@ -33,7 +34,27 @@ namespace CountDown_Day {
                 MessageDialog dialog = new MessageDialog(ex.ToString(), ex.Message);
                 dialog.ShowAsync();
             }
-            MainPage.schedules.Add(new countdown_schedule { ID = MainPage.schedules.Count, Name = (this.TTitle.Text == "" ? "(未命名)" : this.TTitle.Text), time = new DateTime((int)this.CYear.SelectedValue == 0 ? (MainPage.GetForeDate(new DateTime(DateTime.Now.Year, (int)this.CMonth.SelectedValue, (int)this.CDay.SelectedValue)) == MainPage.ForeDate.Future ? DateTime.Now.Year : DateTime.Now.Year + 1) : (int)this.CYear.SelectedValue, (int)this.CMonth.SelectedValue, (int)this.CDay.SelectedValue), filename = filename });
+            MainPage.scheduleBuffer.Clear();
+            foreach (var v in MainPage.schedules) {
+                MainPage.scheduleBuffer.Add(v);
+            }
+            MainPage.scheduleBuffer.Add(new countdown_schedule { 
+                ID = MainPage.schedules.Count, 
+                Name = (this.TTitle.Text == "" ? "(未命名)" : this.TTitle.Text), 
+                time = new DateTime((int)this.CYear.SelectedValue == 0 ? (MainPage.GetForeDate(new DateTime(DateTime.Now.Year, (int)this.CMonth.SelectedValue, (int)this.CDay.SelectedValue)) == MainPage.ForeDate.Future ? DateTime.Now.Year : DateTime.Now.Year + 1) : (int)this.CYear.SelectedValue, (int)this.CMonth.SelectedValue, (int)this.CDay.SelectedValue), 
+                filename = filename,
+                pinned = (bool)this.CPinned.IsChecked
+            });
+            MainPage.schedules.Clear();
+            foreach (var v in MainPage.scheduleBuffer) {
+                if (v.pinned)
+                    MainPage.schedules.Add(v);
+            }
+            foreach (var v in MainPage.scheduleBuffer) {
+                if (!v.pinned)
+                    MainPage.schedules.Add(v);
+            }
+            MainPage.scheduleBuffer.Clear();
             App.Main?.ReLoadItems();
         }
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args) {

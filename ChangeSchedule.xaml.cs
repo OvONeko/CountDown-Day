@@ -30,7 +30,8 @@ namespace CountDown_Day {
                         "Year=" + this.CYear.SelectedValue.ToString(),
                         "Month=" + this.CMonth.SelectedValue.ToString(),
                         "Day=" + this.CDay.SelectedValue.ToString(),
-                        "Title=" + (this.TTil.Text == "" ? "(未命名)" : this.TTil.Text)
+                        "Title=" + (this.TTil.Text == "" ? "(未命名)" : this.TTil.Text),
+                        "Pinned=" + ((bool)this.CPinned.IsChecked ? "1" : "0")
                     };
                     File.WriteAllLines(filename, thisconfig);
                 }
@@ -130,6 +131,10 @@ namespace CountDown_Day {
         public IAsyncOperation<ContentDialogResult> ShowAsyncN(int i) {
             argid = i;
             return this.ShowAsync();
+        }
+
+        private void CPinned_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e) {
+
         }
     }
 }

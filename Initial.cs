@@ -21,6 +21,7 @@ namespace CountDown_Day {
         public DateTime time { get; set; }
         public bool isshow { get; set; }
         public string filename { get; set; }
+        public bool pinned { get; set; }
     }
     public class button_map {
         public int ID { get; set; }
@@ -35,6 +36,7 @@ namespace CountDown_Day {
     }
     public sealed partial class MainPage : Page {
         public static List<countdown_schedule> schedules = new List<countdown_schedule>();
+        public static List<countdown_schedule> scheduleBuffer = new List<countdown_schedule>();
         public static List<button_map> buttonmaps = new List<button_map>();
         int nowid = 0;
         int len = (int)((Window.Current.Bounds.Height - 104) / 48);
@@ -100,6 +102,7 @@ namespace CountDown_Day {
                         string tl = "";
                         int yst = 0;
                         bool isst = false;
+                        bool pinned = false;
                         foreach (var u in values) {
                             string[] c = u.Split('=');
                             for (int i = 0; i < c.Length; i++) {
@@ -114,6 +117,9 @@ namespace CountDown_Day {
                             }
                             else if (c[0] == "title") {
                                 tl = c[1];
+                            }
+                            else if (c[0] == "pinned") {
+                                pinned = Convert.ToInt32(c[1]) != 0;
                             }
                             if (c[0] == "year") {
                                 if (((month == 0) || (day == 0)) && (Convert.ToInt32(c[1]) == 0)) {
@@ -132,10 +138,19 @@ namespace CountDown_Day {
                             year = yst == 0 ? (MainPage.GetForeDate(new DateTime(DateTime.Now.Year, month, day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second).AddSeconds(10)) == ForeDate.Future ? DateTime.Now.Year : DateTime.Now.Year + 1) : yst;
                         }
                         DateTime targetdt = new DateTime(year, month, day);
-                        schedules.Add(new countdown_schedule { ID = i6, isshow = false, Name = tl, time = targetdt, filename = fname });
+                        scheduleBuffer.Add(new countdown_schedule { ID = i6, isshow = false, Name = tl, time = targetdt, filename = fname, pinned = pinned });
                         i6++;
                     }
                 }
+                foreach (var v in scheduleBuffer) {
+                    if (v.pinned)
+                        schedules.Add(v);
+                }
+                foreach (var v in scheduleBuffer) {
+                    if (!v.pinned)
+                        schedules.Add(v);
+                }
+                scheduleBuffer.Clear();
                 this.ReLoadItems();
             }
             this.GImInitial();
@@ -168,7 +183,7 @@ namespace CountDown_Day {
                     buttonmaps[i - status].button.Height = 32;
                     buttonmaps[i - status].button.Margin = new Thickness(8, (i - status) * 40 + 8, 8, 0);
                     buttonmaps[i - status].button.Style = (Application.Current.RequestedTheme == ApplicationTheme.Light) ? (Style)Resources["Button_Lable_Light"] : (Style)Resources["Button_Lable_Dark"];
-                    buttonmaps[i - status].texttime.Text = v.time.ToShortDateString();
+                    buttonmaps[i - status].texttime.Text = v.time.ToShortDateString() + (v.pinned ? "📌" : "");
                     buttonmaps[i - status].texttitle.Text = v.Name;
                     buttonmaps[i - status].texttime.Margin = new Thickness(0, 0, 0, 0);
                     buttonmaps[i - status].texttitle.Margin = new Thickness(0, 0, 0, 0);

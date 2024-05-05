@@ -18,6 +18,8 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="7.5"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="7.5"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -30,5 +32,6 @@
         <ComboBox x:Name="CYear" Width="87.5" Margin="0,0,0,0" VerticalContentAlignment="Center" HorizontalAlignment="Left" DataContext="{Binding}" ItemsSource="{Binding}" Grid.Row="2"></ComboBox>
         <ComboBox x:Name="CMonth" Width="75" Margin="100,0,0,0" VerticalContentAlignment="Center" HorizontalAlignment="Left" DataContext="{Binding}" ItemsSource="{Binding}" Grid.Row="2" SelectionChanged="CMonth_SelectionChanged"></ComboBox>
         <ComboBox x:Name="CDay" Width="75" Margin="187.5,0,0,0" VerticalContentAlignment="Center" HorizontalAlignment="Left" DataContext="{Binding}" ItemsSource="{Binding}" Grid.Row="2"></ComboBox>
+        <CheckBox x:Name="CPinned" VerticalAlignment="Center" HorizontalAlignment="Left" IsEnabledChanged="CPinned_IsEnabledChanged" Content="Pinned" Grid.Row="4"/>
     </Grid>
 </ContentDialog>

@@ -66,6 +66,9 @@
                 <Button x:Name="BAdd" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" Click="BAdd_Click">
                     <Image x:Name="IBAdd" Source="/Assets/button-add.png" Margin="0,0,0,0" Stretch="Uniform"/>
                 </Button>
+                <Button x:Name="BRefresh" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Top" Click="BRefresh_Click" Margin="0,48,0,0">
+                    <Image x:Name="IBRefresh" Source="/Assets/refresh.png" Margin="0,0,0,0" Stretch="Uniform"/>
+                </Button>
                 <Button x:Name="BSetting" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0" Click="BSetting_Click">
                     <Image x:Name="IBSetting" Source="/Assets/button-settings.png" Margin="0,0,0,0" Stretch="Uniform"/>
                 </Button>

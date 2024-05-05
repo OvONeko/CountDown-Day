@@ -174,11 +174,13 @@
     <Content Include="Assets\indark-button-down.png" />
     <Content Include="Assets\indark-button-settings.png" />
     <Content Include="Assets\indark-button-up.png" />
+    <Content Include="Assets\indark-refresh.png" />
     <Content Include="Assets\normal-bg.jpg" />
     <Content Include="Assets\normal-bg.png" />
     <Content Include="Assets\note-dark.png" />
     <Content Include="Assets\note-light.png" />
     <Content Include="Assets\progress_pride_flag_4-3.png" />
+    <Content Include="Assets\refresh.png" />
     <Content Include="Assets\Transfer.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />

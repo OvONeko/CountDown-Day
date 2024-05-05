@@ -11,12 +11,14 @@ namespace CountDown_Day {
                 this.IBDown.Source = new BitmapImage(new Uri("ms-appx:///Assets/button-down.png"));
                 this.IBSetting.Source = new BitmapImage(new Uri("ms-appx:///Assets/button-settings.png"));
                 this.IBUp.Source = new BitmapImage(new Uri("ms-appx:///Assets/button-up.png"));
+                this.IBRefresh.Source = new BitmapImage(new Uri("ms-appx:///Assets/refresh.png"));
             }
             else {
                 this.IBAdd.Source = new BitmapImage(new Uri("ms-appx:///Assets/indark-button-add.png"));
                 this.IBDown.Source = new BitmapImage(new Uri("ms-appx:///Assets/indark-button-down.png"));
                 this.IBSetting.Source = new BitmapImage(new Uri("ms-appx:///Assets/indark-button-settings.png"));
                 this.IBUp.Source = new BitmapImage(new Uri("ms-appx:///Assets/indark-button-up.png"));
+                this.IBRefresh.Source = new BitmapImage(new Uri("ms-appx:///Assets/indark-refresh.png"));
             }
         }
         private void BAdd_Click(object sender, RoutedEventArgs e) {
@@ -75,6 +77,11 @@ namespace CountDown_Day {
                 ChangeSchedule cgs = new ChangeSchedule();
                 cgs.ShowAsyncN(id);
             }
+        }
+        private void BRefresh_Click(object sender, RoutedEventArgs e) {
+            scheduleBuffer.Clear();
+            schedules.Clear();
+            App.Main?.Page_Loaded(sender, e);
         }
     }
 }
