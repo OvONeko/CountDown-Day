@@ -183,7 +183,7 @@ namespace CountDown_Day {
                     buttonmaps[i - status].button.Height = 32;
                     buttonmaps[i - status].button.Margin = new Thickness(8, (i - status) * 40 + 8, 8, 0);
                     buttonmaps[i - status].button.Style = (Application.Current.RequestedTheme == ApplicationTheme.Light) ? (Style)Resources["Button_Lable_Light"] : (Style)Resources["Button_Lable_Dark"];
-                    buttonmaps[i - status].texttime.Text = v.time.ToShortDateString() + (v.pinned ? "📌" : "");
+                    buttonmaps[i - status].texttime.Text = v.time.ToShortDateString() + (v.pinned ? "    📌" : "");
                     buttonmaps[i - status].texttitle.Text = v.Name;
                     buttonmaps[i - status].texttime.Margin = new Thickness(0, 0, 0, 0);
                     buttonmaps[i - status].texttitle.Margin = new Thickness(0, 0, 0, 0);
