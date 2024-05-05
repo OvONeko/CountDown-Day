@@ -174,7 +174,7 @@ namespace CountDown_Day {
                     continue;
                 if (((i - status) * 48 + 8) < h) {
                     buttonmaps.Add(new button_map {
-                        ID = i,
+                        ID = v.ID,
                         button = new Button(),
                         gridc = new Grid(),
                         texttime = new TextBlock(),

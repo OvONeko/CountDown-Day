@@ -47,8 +47,13 @@ namespace CountDown_Day {
             if (id == -1)
                 throw new Exception("Failed to query metadata");
             else {
-                string title = schedules[id].Name;
-                DateTime tdt = schedules[id].time;
+                countdown_schedule handledSchedule = new countdown_schedule();
+                foreach (var v in schedules) {
+                    if (v.ID == id)
+                        handledSchedule = v;
+                }
+                string title = handledSchedule.Name;
+                DateTime tdt = handledSchedule.time;
                 DateTime nowPlus = DateTime.Now.AddSeconds(10);
                 tdt = new DateTime(tdt.Year, tdt.Month, tdt.Day, nowPlus.Hour, nowPlus.Minute, nowPlus.Second);
                 string ce;
