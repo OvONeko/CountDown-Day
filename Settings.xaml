@@ -16,6 +16,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="5"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid x:Name="GROpen" Grid.Row="0" Width="450">
@@ -23,19 +24,20 @@
                 <TextBlock Text="打开设定文件夹"/>
             </Button>
         </Grid>
-        <Grid x:Name="GRGlobal" Grid.Row="1" Width="450">
+        <Grid x:Name="GRGlobal" Grid.Row="2" Width="450">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="75"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="5"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <TextBox x:Name="TGBg" Grid.Column="0" Grid.Row="0" Text="" PlaceholderText="背景图片路径..."/>
-            <TextBox x:Name="TGFg" Grid.Column="0" Grid.Row="1" Text="" PlaceholderText="前景图片路径..."/>
+            <TextBox x:Name="TGFg" Grid.Column="0" Grid.Row="2" Text="" PlaceholderText="前景图片路径..."/>
             <Button x:Name="BGBg" Grid.Column="1" Grid.Row="0" Width="75" Content="搜索" Click="BGBg_Click"/>
-            <Button x:Name="FGBg" Grid.Column="1" Grid.Row="1" Width="75" Content="搜索" Click="FGBg_Click"/>
+            <Button x:Name="FGBg" Grid.Column="1" Grid.Row="2" Width="75" Content="搜索" Click="FGBg_Click"/>
         </Grid>
     </Grid>
 </ContentDialog>
