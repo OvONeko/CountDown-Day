@@ -40,6 +40,8 @@ namespace CountDown_Day {
         public static List<button_map> buttonmaps = new List<button_map>();
         int nowid = 0;
         int len = (int)((Window.Current.Bounds.Height - 104) / 48);
+        int pinnedCount = 0;
+
         public enum ForeDate {
             Past = 1,
             Future = -1,
@@ -143,8 +145,10 @@ namespace CountDown_Day {
                     }
                 }
                 foreach (var v in scheduleBuffer) {
-                    if (v.pinned)
+                    if (v.pinned) {
+                        pinnedCount++; 
                         schedules.Add(v);
+                    }
                 }
                 foreach (var v in scheduleBuffer) {
                     if (!v.pinned)
@@ -171,6 +175,8 @@ namespace CountDown_Day {
             double h = Window.Current.Bounds.Height;
             foreach (var v in schedules) {
                 if (v.ID < status)
+                    continue;
+                if ((status > (schedules.Count / len)) && v.pinned)
                     continue;
                 if (((i - status) * 48 + 8) < h) {
                     buttonmaps.Add(new button_map {
